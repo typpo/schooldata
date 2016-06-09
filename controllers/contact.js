@@ -12,7 +12,9 @@ var transporter = nodemailer.createTransport({
  */
 exports.contactGet = function(req, res) {
   res.render('contact', {
-    title: 'Contact'
+    page: {
+      selection: 'Contact',
+    },
   });
 };
 
