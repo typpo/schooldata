@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 echo "Downloading..."
 
@@ -9,5 +9,5 @@ echo "Working..."
 
 mv sc132a.txt publicschools_20132014.tsv
 
-echo "Now you probably want to run ./run_process.sh"
+echo "Now you probably want to run ./process_into_mongo.sh"
 echo "Done."
