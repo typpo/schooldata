@@ -17,6 +17,7 @@ dotenv.load();
 // Controllers
 var HomeController = require('./controllers/home');
 var ContactController = require('./controllers/contact');
+var SchoolController = require('./controllers/school');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', HomeController.index);
 app.get('/contact', ContactController.contactGet);
 app.post('/contact', ContactController.contactPost);
+app.get('/school/:slug', SchoolController.index);
 
 // Production error handler
 if (app.get('env') === 'production') {
