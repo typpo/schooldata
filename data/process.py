@@ -11,17 +11,19 @@ from collections import OrderedDict
 class Transformer(object):
     def __init__(self):
         self.TRANSFORMS = OrderedDict({
-            'school_name': self.get_name,
-            'school_street_address': self.get_street_address,
-            'school_mailing_address': self.get_mailing_address,
-            'school_city': self.get_city,
-            'school_state': self.get_state,
-            'school_zip': self.get_zip,
-            'school_phone': self.get_phone,
-            'school_agency': self.get_agency,
-            'school_type': self.get_type,
+            'name': self.get_name,
+            'street_address': self.get_street_address,
+            'mailing_address': self.get_mailing_address,
+            'city': self.get_city,
+            'state': self.get_state,
+            'zip': self.get_zip,
+            'phone': self.get_phone,
+            'agency': self.get_agency,
+            'type': self.get_type,
+            'lat': self.get_lat,
+            'lng': self.get_lng,
 
-            'school_locale_type': self.get_locale_type,
+            'locale_type': self.get_locale_type,
 
             # TODO(ian): status.
         })
