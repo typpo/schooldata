@@ -8,7 +8,6 @@ unzip publicschools_20132014.zip
 echo "Working..."
 
 mv sc132a.txt publicschools_20132014.tsv
-cat publicschools_20132014.tsv | ./tsv_to_csv.py > publicschools_20132014.csv
 
-echo "Wrote publicschools_20132014.csv"
+echo "Now you probably want to run ./run_process.sh"
 echo "Done."
