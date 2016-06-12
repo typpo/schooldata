@@ -8,9 +8,13 @@ import csv
 import sys
 from collections import OrderedDict
 
+from slugify import slugify
+
 class Transformer(object):
     def __init__(self):
         self.TRANSFORMS = OrderedDict({
+            'slug': self.get_slug,
+
             'name': self.get_name,
             'street_address': self.get_street_address,
             'mailing_address': self.get_mailing_address,
@@ -27,6 +31,9 @@ class Transformer(object):
 
             # TODO(ian): status.
         })
+
+    def get_slug(self, row):
+        return slugify(self.get_name(row))
 
     def get_name(self, row):
         return row['SCHNAM']
@@ -58,7 +65,10 @@ class Transformer(object):
         return types[school_type - 1]
 
     def get_locale_type(self, row):
-        parsed = int(row['ULOCAL'])
+        try:
+            parsed = int(row['ULOCAL'])
+        except ValueError:
+            return None
         types = {
 	    11: 'City, Large',
 	    12: 'City, Mid-size',
