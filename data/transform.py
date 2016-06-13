@@ -12,7 +12,8 @@ from slugify import slugify
 
 def capitalize_first_letters(words):
     splits = words.split(' ')
-    return ' '.join([word[0].upper() + word[1:].lower() for word in splits])
+    return ' '.join([word[0].upper() + word[1:].lower() for word in splits \
+            if len(word) > 0])
 
 class Transformer(object):
     def __init__(self):
