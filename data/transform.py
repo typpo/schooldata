@@ -10,6 +10,10 @@ from collections import OrderedDict
 
 from slugify import slugify
 
+def capitalize_first_letters(words):
+    splits = words.split(' ')
+    return ' '.join([word[0].upper() + word[1:].lower() for word in splits])
+
 class Transformer(object):
     def __init__(self):
         self.TRANSFORMS = OrderedDict({
@@ -36,19 +40,32 @@ class Transformer(object):
         return slugify(self.get_name(row))
 
     def get_name(self, row):
-        return row['SCHNAM']
+        REPLACE_TOKENS = {
+            'SCH': 'School',
+            'ALT': 'Alternative',
+            'ELEM': 'Elementary',
+        }
+        name = row['SCHNAM']
+        tokens = name.split()
+
+        renamed_tokens = []
+        for token in tokens:
+            newtok = REPLACE_TOKENS.get(token, token)
+            newtok = newtok[0].upper() + newtok[1:].lower()
+            renamed_tokens.append(newtok)
+        return ' '.join(renamed_tokens)
 
     def get_street_address(self, row):
-        return row['LSTREE']
+        return capitalize_first_letters(row['LSTREE'])
 
     def get_mailing_address(self, row):
-        return row['MSTREE']
+        return capitalize_first_letters(row['MSTREE'])
 
     def get_phone(self, row):
         return row['PHONE']
 
     def get_city(self, row):
-        return row['LCITY']
+        return capitalize_first_letters(row['LCITY'])
 
     def get_state(self, row):
         return row['LSTATE']
@@ -57,7 +74,7 @@ class Transformer(object):
         return row['LZIP']
 
     def get_agency(self, row):
-        return row['LEANM']
+        return capitalize_first_letters(row['LEANM'])
 
     def get_type(self, row):
         school_type = int(row['TYPE'])
