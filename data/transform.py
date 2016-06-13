@@ -48,12 +48,9 @@ class Transformer(object):
         name = row['SCHNAM']
         tokens = name.split()
 
-        renamed_tokens = []
-        for token in tokens:
-            newtok = REPLACE_TOKENS.get(token, token)
-            newtok = newtok[0].upper() + newtok[1:].lower()
-            renamed_tokens.append(newtok)
-        return ' '.join(renamed_tokens)
+        return ' '.join([
+                capitalize_first_letters(REPLACE_TOKENS.get(token, token)) \
+                        for token in tokens])
 
     def get_street_address(self, row):
         return capitalize_first_letters(row['LSTREE'])
