@@ -24,40 +24,16 @@
   </div>
   {% endif %}
   <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-12">
       <div class="panel">
         <div class="panel-body">
-          <h3>Unbiased School Statistics</h3>
-          <p>SchoolData.org is a non-profit that publishes data from the U.S. Department of Education in a simple, easy-to-understand format.  Unlike other school-ranking sites, we are not ad-supported and provide raw data rather than biased interpretations.</p>
-          <a href="#" role="button" class="btn btn-default">View details</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="panel">
-        <div class="panel-body">
-          <h3>Top Schools</h3>
-          Ranked by
-          <select class="form-control">
-            <option>Language Arts scores</option>
-            <option>Math scores</option>
-            <option>Overall scores</option>
-          </select>
+          <h3>{{school.name}}</h3>
+          <p>{{school.street_address}}, {{school.city}} {{school.state}} {{school.zip}}</p>
+          <p>{{school.phone}}</p>
+          <p>Agency: {{school.agency}}</p>
+          <p>Type: {{school.type}}</p>
           <div>
-            <table class="table table-striped table-bordered table-hover table-condensed">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Location</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Foo</td>
-                  <td>Bar</td>
-                </tr>
-              </tbody>
-            </table>
+            <img src="{{map.url}}" />
           </div>
         </div>
       </div>

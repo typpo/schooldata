@@ -3,4 +3,4 @@ MAILGUN_PASSWORD='ed49d942fd9e6c11208ee3aacb29df9d'
 
 SESSION_SECRET='78d4edf55b2a063f1fb2d33e0cfe6678cbfaf61cdbdb97593b5b2106adf4f72d'
 
-MONGODB='localhost'
+MONGODB='mongodb://localhost/schools'

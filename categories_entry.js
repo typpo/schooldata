@@ -26,6 +26,8 @@ mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
   process.exit(1);
 });
+mongoose.set('debug', true);
+
 // view engine setup
 nunjucks.configure('views', {
   autoescape: true,
@@ -46,7 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', HomeController.index);
 app.get('/contact', ContactController.contactGet);
 app.post('/contact', ContactController.contactPost);
-app.get('/:slug', SchoolController.index);
+app.get('/schools/:slug', SchoolController.index);
 
 // Production error handler
 if (app.get('env') === 'production') {

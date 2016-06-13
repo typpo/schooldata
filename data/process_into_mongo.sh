@@ -5,6 +5,7 @@ pushd `dirname $0`
 cat publicschools_20132014.tsv | ./transform.py > processed_output.csv
 
 echo 'Dumping into mongo...'
+mongo categories --eval "db.schools.drop()"
 mongoimport -d categories -c schools --type csv --file processed_output.csv --headerline
 
 echo 'Cleaning up...'
