@@ -31,6 +31,7 @@ mongoose.set('debug', true);
 // view engine setup
 nunjucks.configure('views', {
   autoescape: true,
+  noCache: true,
   express: app
 });
 app.set('view engine', 'html');
