@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', HomeController.index);
 app.get('/contact', ContactController.contactGet);
 app.post('/contact', ContactController.contactPost);
-app.get('/schools/:state', DirectoryController.index);
+app.get('/schools/:state', DirectoryController.state);
 app.get('/school/:slug', SchoolController.index);
 
 // Production error handler
