@@ -30,11 +30,13 @@ mongoose.connection.on('error', function() {
 mongoose.set('debug', true);
 
 // view engine setup
-nunjucks.configure('views', {
+var env = nunjucks.configure('views', {
   autoescape: true,
   noCache: true,
   express: app
 });
+require('nunjucks-phone-filter').install(env);
+
 app.set('view engine', 'html');
 app.set('port', process.env.PORT || 6001);
 app.use(compression());
