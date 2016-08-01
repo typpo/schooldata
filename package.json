@@ -6,7 +6,7 @@
     "build": "npm-run-all build:*",
     "build:css": "node-sass public/css/main.scss > public/css/main.css",
     "postinstall": "npm run build",
-    "start": "node server.js",
+    "start": "supervisor categories_entry.js",
     "watch": "npm-run-all --parallel watch:*",
     "watch:css": "nodemon -e scss -w public/css -x npm run build:css"
   },
