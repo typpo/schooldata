@@ -30,7 +30,7 @@
         <div class="panel-body">
           <h3><a href="/school/{{school.slug}}">{{school.name}}</a></h3>
           <p>{{school.street_address}}, {{school.city}} {{school.state}} {{school.zip}}</p>
-          <p>{{school.phone}}</p>
+          <p>{{school.phone | phone_number}}</p>
           <p>Agency: {{school.agency}}</p>
           <p>Type: {{school.type}}</p>
           <div>
