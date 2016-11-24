@@ -5,7 +5,7 @@ function getStaticMapUrl(lat, lng) {
 }
 
 function getStreetViewUrl(lat, lng) {
-  return 'https://maps.googleapis.com/maps/api/streetview?size=400x400&location=' + lat + ',' + lng + '&fov=90&heading=235&pitch=10&key=' + process.env.MAPS_API_KEY;
+  return 'https://maps.googleapis.com/maps/api/streetview?size=400x400&location=' + lat + ',' + lng + '&fov=90&key=' + process.env.MAPS_API_KEY;
 }
 
 /**
