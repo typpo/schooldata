@@ -7,7 +7,7 @@ function getStaticMapUrl(lat, lng) {
 /**
  * GET school data.
  */
-exports.index= function(req, res) {
+exports.index = function(req, res) {
   console.log('Getting school data for ' + req.params.directory);
 
   // Example directory: CA-schools, 94043-schools.
