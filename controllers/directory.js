@@ -8,17 +8,25 @@ function getStaticMapUrl(lat, lng) {
  * GET school data.
  */
 exports.index = function(req, res) {
-  console.log('Getting school data for ' + req.params.directory);
 
-  // Example directory: CA-schools, 94043-schools.
-  var loc = req.params.directory.split('-')[0];
   var filter = {};
-  if (/^\d+$/.test(loc)) {
-    // By zipcode.
-    filter.zip = loc;
-  } else {
-    // By state.
-    filter.state = loc.toUpperCase();
+
+  if (req.params.directory) {
+    console.log('Getting school data for ' + req.params.directory);
+    // Example directory: CA-schools, 94043-schools.
+    var loc = req.params.directory.split('-')[0];
+    if (/^\d+$/.test(loc)) {
+      // By zipcode.
+      filter.zip = loc;
+    } else {
+      // By state.
+      filter.state = loc.toUpperCase();
+    }
+  }
+
+  if (req.params.district) {
+    console.log('Getting school data for ' + req.params.district);
+    filter.agency_slug = req.params.district;
   }
 
   School.find(filter).then(function(schools) {

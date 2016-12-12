@@ -19,6 +19,7 @@ class Transformer(object):
     def __init__(self):
         self.TRANSFORMS = OrderedDict({
             'slug': self.get_slug,
+            'agency_slug': self.get_agency_slug,
 
             'name': self.get_name,
             'street_address': self.get_street_address,
@@ -39,6 +40,9 @@ class Transformer(object):
 
     def get_slug(self, row):
         return slugify(self.get_name(row))
+
+    def get_agency_slug(self, row):
+        return slugify(self.get_agency(row))
 
     def get_name(self, row):
         REPLACE_TOKENS = {
