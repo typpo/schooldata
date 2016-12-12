@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 var Schema = mongoose.Schema;
 
-var School = mongoose.model('School', new Schema({
+var schoolSchema = new Schema({
   'slug': String,
   'agency_slug': String,
 
@@ -18,6 +19,9 @@ var School = mongoose.model('School', new Schema({
   'lng': Number,
 
   'locale_type': String,
-}), 'schools');
+});
+
+schoolSchema.plugin(mongoosePaginate);
+var School = mongoose.model('School', schoolSchema);
 
 module.exports = School;

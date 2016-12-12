@@ -20,6 +20,7 @@
     "express-validator": "^2.20.4",
     "method-override": "^2.3.5",
     "mongoose": "^4.4.8",
+    "mongoose-paginate": "^5.0.3",
     "morgan": "^1.7.0",
     "node-sass": "^3.6.0",
     "nodemailer": "^2.3.0",
