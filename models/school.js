@@ -3,6 +3,8 @@ var Schema = mongoose.Schema;
 
 var School = mongoose.model('School', new Schema({
   'slug': String,
+  'agency_slug': String,
+
   'name': String,
   'street_address': String,
   'mailing_address': String,

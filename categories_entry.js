@@ -53,7 +53,9 @@ app.get('/', HomeController.index);
 app.get('/contact', ContactController.contactGet);
 app.post('/contact', ContactController.contactPost);
 app.get('/school/:slug', SchoolController.index);
+// Handles routes like CA-schools, 94043-shools.
 app.get('/:directory', DirectoryController.index);
+app.get('/district/:district', DirectoryController.index);
 
 // Production error handler
 if (app.get('env') === 'production') {
