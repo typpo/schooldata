@@ -1,6 +1,12 @@
 .env
 venv
 
+*.gz
+*.xlsx
+*.csv
+*.zip
+data/*/*.txt
+
 ### Vim ###
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
