@@ -36,7 +36,7 @@
             {% endif %}
             {{school.city}}, {{school.state}} {{school.zip}}
           </p>
-          <p>{{school.phone | phone_number}}</p>
+          <p><a href="tel:{{school.phone}}">{{school.phone | phone_number}}</a></p>
           <p>District: <a href="/district/{{school.agency_slug}}">{{school.agency}}</a></p>
           <p>Type: {{school.type}}</p>
           <div>
