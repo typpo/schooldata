@@ -43,7 +43,7 @@ tr.indent td {
           <p><a href="tel:{{school.phone}}">{{school.phone | phone_number}}</a></p>
           <p>District: <a href="/district/{{school.agency_slug}}">{{school.agency}}</a></p>
           <p>Type: {{school.type}}</p>
-          <p>NCES ID: {{school.nces_school_identifier}}</p>
+          <p>NCES ID: {{school.nces_agency_identification_number}}{{school.nces_school_identifier}}</p>
           <div>
             <h2>Total Size</h2>
             Total students: {{school.total_students_all_grades_includes_ae}}
