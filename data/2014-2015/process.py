@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import csv
 import json
+import pymongo
 from slugify import slugify
 
 # Data files.
@@ -47,7 +48,7 @@ def get_slug(colname, abbrevs_to_desc):
 
 def load_annotated_dataframe(data_path, defs_path):
     data = pd.read_csv(data_path, delimiter='\t', dtype='unicode')
-    defs = pd.read_excel(defs_path, verbose=True)
+    defs = pd.read_excel(defs_path)
     abbrevs_to_desc = dict(zip(defs['Variable Name'].values, defs['Description'].values))
     data.columns = [get_slug(colname, abbrevs_to_desc) for colname in data.columns]
     data['slug'] = pd.Series([slugify(name, separator='_') for name in data['name'].values])
@@ -62,10 +63,28 @@ dfs = [load_annotated_dataframe(pair[0], pair[1]) for pair in PAIRS]
 print 'Combining...'
 x = pd.DataFrame()
 for df in dfs:
+    # See https://pandas-docs.github.io/pandas-docs-travis/basics.html#general-dataframe-combine
     x = x.combine_first(df)
 print x.shape
 
 print 'Writing...'
 x.to_csv('processed_data.csv')
+
+print 'Inserting to schools:schools...'
+mng_client = pymongo.MongoClient('localhost', 27017)
+mng_db = mng_client['schools']
+db_cm = mng_db['schools']
+db_cm.drop()
+db_cm.remove()
+
+#data_json = json.loads(x.fillna(-99).to_json(orient='records'))
+#db_cm.insert(data_json)
+batch = []
+for index, row in x.iterrows():
+    batch.append(dict(zip(x.columns, row.values)))
+    if len(batch) > 50000:
+        db_cm.insert_many(batch)
+        batch = []
+
 print 'Done.'
 
