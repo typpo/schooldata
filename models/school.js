@@ -74,14 +74,15 @@ var schoolSchema = new Schema({
 });
 
 schoolSchema.methods.getStreetAddress = function() {
-  if (!this.location_address_street_1) {
+  // NaNs come from pandas.
+  if (!this.location_address_street_1 || this.location_address_street_1 === 'NaN') {
     return '';
   }
   var str = this.location_address_street_1;
-  if (this.location_address_street_2) {
+  if (this.location_address_street_2 && this.location_address_street_2 !== 'NaN') {
     str += ', ' + this.location_address_street_2;
   }
-  if (this.location_address_street_3) {
+  if (this.location_address_street_3 && this.location_address_street_3 !== 'NaN') {
     str += ', ' + this.location_address_street_3;
   }
   return str;
