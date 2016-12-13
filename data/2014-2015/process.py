@@ -53,8 +53,12 @@ def load_annotated_dataframe(data_path, defs_path):
     data.columns = [get_slug(colname, abbrevs_to_desc) for colname in data.columns]
     data['slug'] = pd.Series([slugify(name, separator='_') for name in data['name'].values])
     data['agency_slug'] = pd.Series([slugify(name, separator='_') for name in data['agency'].values])
+    data['nces_uid'] = pd.Series([x[0] + x[1] \
+            for x in zip(data['nces_school_identifier'].values, \
+                         data['nces_agency_identification_number'].values)])
     # TODO add name slug for name and agency, create address, etc.
-    data.set_index('nces_school_identifier')
+    # data.set_index(['nces_school_identifier', 'nces_agency_identification_number'], inplace=True)
+    data.set_index(['nces_uid'], inplace=True)
     return data
 
 print 'Loading...'
@@ -65,6 +69,7 @@ x = pd.DataFrame()
 for df in dfs:
     # See https://pandas-docs.github.io/pandas-docs-travis/basics.html#general-dataframe-combine
     x = x.combine_first(df)
+    #x= x.merge(df.ix[:,df.columns-x.columns], left_index=True, right_index=True, how="outer")
 print x.shape
 
 print 'Writing...'
