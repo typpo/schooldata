@@ -48,7 +48,7 @@ exports.index = function(req, res) {
     filter.agency_slug = req.params.district;
   }
 
-  School.paginate(filter, {page: req.query.page || 1, limit: 20}).then(function(resp) {
+  School.paginate(filter, {page: req.query.page || 1, limit: 20, sort: 'name'}).then(function(resp) {
     res.render('directory', {
       page: {
         selection: 'Schools',
