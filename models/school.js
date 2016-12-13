@@ -23,6 +23,9 @@ var schoolSchema = new Schema({
 
   //'locale_type': String,
 
+  nces_agency_identification_number: String,
+  nces_school_identifier: String,
+
   location_address_street_1: String,
   location_address_street_2: String,
   location_address_street_3: String,
