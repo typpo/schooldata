@@ -1,5 +1,7 @@
 $(function() {
-
-  // Your custom JavaScript goes here
-
+  $('.jquery-datatable').DataTable({
+    paging: false,
+    order: [[1, 'desc']],
+    bFilter: false
+  });
 });
