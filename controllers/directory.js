@@ -4,6 +4,26 @@ function getStaticMapUrl(lat, lng) {
   return 'http://maps.googleapis.com/maps/api/staticmap?zoom=2&scale=1&size=350x250&maptype=terrain&format=png&visual_refresh=true&markers=size:mid%7Ccolor:red%7Clabel:1%7C' + lat + ',' + lng + '&key=' + process.env.MAPS_API_KEY;
 }
 
+function getPaginationData(currentPage, totalPage) {
+  currentPage = parseInt(currentPage, 10) || 1;
+  // Display 5 pages at once.
+  var NUM_PAGES = 5;
+  var startPage = Math.max(1, currentPage - Math.floor(NUM_PAGES / 2));
+  if (startPage > totalPage - NUM_PAGES + 1) {
+    startPage = totalPage - NUM_PAGES + 1;
+  }
+
+  console.log(startPage);
+  console.log(startPage + NUM_PAGES);
+  console.log(totalPage);
+  return {currentPage: currentPage,
+    prevPage: Math.max(1, currentPage - 1),
+    nextPage: Math.min(totalPage, currentPage + 1),
+    totalPage: totalPage,
+    startPage: startPage,
+    endPage: Math.min(totalPage, startPage + NUM_PAGES - 1)};
+}
+
 /**
  * GET school data.
  */
@@ -34,6 +54,7 @@ exports.index = function(req, res) {
       page: {
         selection: 'Schools',
       },
+      pagination: getPaginationData(resp.page, resp.pages),
       schools: resp.docs,
     });
   });
