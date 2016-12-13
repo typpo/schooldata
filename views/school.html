@@ -179,90 +179,132 @@ tr.indent td {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>American Indian/Alaska native</td>
-                  <td>{{school.all_students_american_indian_alaska_native}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>American Indian/Alaska native female</td>
-                  <td>{{school.all_students_american_indian_alaska_native_female}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>American Indian/Alaska native male</td>
-                  <td>{{school.all_students_american_indian_alaska_native_male}}</td>
-                </tr>
-                <tr>
-                  <td>Asian</td>
-                  <td>{{school.all_students_asian}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>Asian female</td>
-                  <td>{{school.all_students_asian_female}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>Asian male</td>
-                  <td>{{school.all_students_asian_male}}</td>
-                </tr>
-                <tr>
-                  <td>Black</td>
-                  <td>{{school.all_students_black}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>Black female</td>
-                  <td>{{school.all_students_black_female}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>Black male</td>
-                  <td>{{school.all_students_black_male}}</td>
-                </tr>
-                <tr>
-                  <td>Hawaiian native pacific islander</td>
-                  <td>{{school.all_students_hawaiian_native_pacific_islander}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>Hawaiian native pacific islander female</td>
-                  <td>{{school.all_students_hawaiian_native_pacific_islander_female}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>Hawaiian native pacific islander male</td>
-                  <td>{{school.all_students_hawaiian_native_pacific_islander_male}}</td>
-                </tr>
-                <tr>
-                  <td>Hispanic</td>
-                  <td>{{school.all_students_hispanic}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>Hispanic female</td>
-                  <td>{{school.all_students_hispanic_female}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>Hispanic male</td>
-                  <td>{{school.all_students_hispanic_male}}</td>
-                </tr>
-                <tr>
-                  <td>Two or more races</td>
-                  <td>{{school.all_students_two_or_more_races}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>Two or more races female</td>
-                  <td>{{school.all_students_two_or_more_races_female}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>Two or more races male</td>
-                  <td>{{school.all_students_two_or_more_races_male}}</td>
-                </tr>
-                <tr>
-                  <td>White</td>
-                  <td>{{school.all_students_white}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>White female</td>
-                  <td>{{school.all_students_white_female}}</td>
-                </tr>
-                <tr class="indent">
-                  <td>White male</td>
-                  <td>{{school.all_students_white_male}}</td>
-                </tr>
+                {% if school.all_students_american_indian_alaska_native >= 0 %}
+                  <tr>
+                    <td>American Indian/Alaska native</td>
+                    <td>{{school.all_students_american_indian_alaska_native}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_american_indian_alaska_native_female >= 0 %}
+                  <tr class="indent">
+                    <td>American Indian/Alaska native female</td>
+                    <td>{{school.all_students_american_indian_alaska_native_female}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_american_indian_alaska_native_male >= 0 %}
+                  <tr class="indent">
+                    <td>American Indian/Alaska native male</td>
+                    <td>{{school.all_students_american_indian_alaska_native_male}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_asian >= 0 %}
+                  <tr>
+                    <td>Asian</td>
+                    <td>{{school.all_students_asian}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_asian_female >= 0 %}
+                  <tr class="indent">
+                    <td>Asian female</td>
+                    <td>{{school.all_students_asian_female}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_asian_male >= 0 %}
+                  <tr class="indent">
+                    <td>Asian male</td>
+                    <td>{{school.all_students_asian_male}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_black >= 0 %}
+                  <tr>
+                    <td>Black</td>
+                    <td>{{school.all_students_black}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_black_female >= 0 %}
+                  <tr class="indent">
+                    <td>Black female</td>
+                    <td>{{school.all_students_black_female}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_black_male >= 0 %}
+                  <tr class="indent">
+                    <td>Black male</td>
+                    <td>{{school.all_students_black_male}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_hawaiian_native_pacific_islander >= 0 %}
+                  <tr>
+                    <td>Hawaiian native pacific islander</td>
+                    <td>{{school.all_students_hawaiian_native_pacific_islander}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_hawaiian_native_pacific_islander_female >= 0 %}
+                  <tr class="indent">
+                    <td>Hawaiian native pacific islander female</td>
+                    <td>{{school.all_students_hawaiian_native_pacific_islander_female}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_hawaiian_native_pacific_islander_male >= 0 %}
+                  <tr class="indent">
+                    <td>Hawaiian native pacific islander male</td>
+                    <td>{{school.all_students_hawaiian_native_pacific_islander_male}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_hispanic >= 0 %}
+                  <tr>
+                    <td>Hispanic</td>
+                    <td>{{school.all_students_hispanic}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_hispanic_female >= 0 %}
+                  <tr class="indent">
+                    <td>Hispanic female</td>
+                    <td>{{school.all_students_hispanic_female}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_hispanic_male >= 0 %}
+                  <tr class="indent">
+                    <td>Hispanic male</td>
+                    <td>{{school.all_students_hispanic_male}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_two_or_more_races >= 0 %}
+                  <tr>
+                    <td>Two or more races</td>
+                    <td>{{school.all_students_two_or_more_races}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_two_or_more_races_female >= 0 %}
+                  <tr class="indent">
+                    <td>Two or more races female</td>
+                    <td>{{school.all_students_two_or_more_races_female}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_two_or_more_races_male >= 0 %}
+                  <tr class="indent">
+                    <td>Two or more races male</td>
+                    <td>{{school.all_students_two_or_more_races_male}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_white >= 0 %}
+                  <tr>
+                    <td>White</td>
+                    <td>{{school.all_students_white}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_white_female >= 0 %}
+                  <tr class="indent">
+                    <td>White female</td>
+                    <td>{{school.all_students_white_female}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.all_students_white_male >= 0 %}
+                  <tr class="indent">
+                    <td>White male</td>
+                    <td>{{school.all_students_white_male}}</td>
+                  </tr>
+                {% endif %}
               </tbody>
             </table>
           </div>
