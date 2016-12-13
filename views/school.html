@@ -1,5 +1,11 @@
 {% extends 'layout.html' %}
 
+{% block styles %}
+tr.indent td {
+  margin-left: 3em;
+}
+{% endblock %}
+
 {% block body %}
 <div class="container-fluid">
   {% if messages.success %}
@@ -37,6 +43,101 @@
           <p>{{school.phone | phone_number}}</p>
           <p>District: <a href="/district/{{school.agency_slug}}">{{school.agency}}</a></p>
           <p>Type: {{school.type}}</p>
+          <div>
+            <h2>Demographic Information</h2>
+            <table class="table table-striped table-bordered table-hover table-condensed">
+              <thead>
+                <th>Demographic</th>
+                <th>Number of students</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>American Indian/Alaska native</td>
+                  <td>{{school.all_students_american_indian_alaska_native}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>American Indian/Alaska native female</td>
+                  <td>{{school.all_students_american_indian_alaska_native_female}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>American Indian/Alaska native male</td>
+                  <td>{{school.all_students_american_indian_alaska_native_male}}</td>
+                </tr>
+                <tr>
+                  <td>Asian</td>
+                  <td>{{school.all_students_asian}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>Asian female</td>
+                  <td>{{school.all_students_asian_female}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>Asian male</td>
+                  <td>{{school.all_students_asian_male}}</td>
+                </tr>
+                <tr>
+                  <td>Black</td>
+                  <td>{{school.all_students_black}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>Black female</td>
+                  <td>{{school.all_students_black_female}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>Black male</td>
+                  <td>{{school.all_students_black_male}}</td>
+                </tr>
+                <tr>
+                  <td>Hawaiian native pacific islander</td>
+                  <td>{{school.all_students_hawaiian_native_pacific_islander}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>Hawaiian native pacific islander female</td>
+                  <td>{{school.all_students_hawaiian_native_pacific_islander_female}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>Hawaiian native pacific islander male</td>
+                  <td>{{school.all_students_hawaiian_native_pacific_islander_male}}</td>
+                </tr>
+                <tr>
+                  <td>Hispanic</td>
+                  <td>{{school.all_students_hispanic}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>Hispanic female</td>
+                  <td>{{school.all_students_hispanic_female}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>Hispanic male</td>
+                  <td>{{school.all_students_hispanic_male}}</td>
+                </tr>
+                <tr>
+                  <td>Two or more races</td>
+                  <td>{{school.all_students_two_or_more_races}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>Two or more races female</td>
+                  <td>{{school.all_students_two_or_more_races_female}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>Two or more races male</td>
+                  <td>{{school.all_students_two_or_more_races_male}}</td>
+                </tr>
+                <tr>
+                  <td>White</td>
+                  <td>{{school.all_students_white}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>White female</td>
+                  <td>{{school.all_students_white_female}}</td>
+                </tr>
+                <tr class="indent">
+                  <td>White male</td>
+                  <td>{{school.all_students_white_male}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div>
             <img src="{{map.url}}" />
           </div>
