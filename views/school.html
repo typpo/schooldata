@@ -32,7 +32,7 @@
             {% if school.getStreetAddress() %}
               {{school.getStreetAddress()}},
             {% endif %}
-            {{school.city}} {{school.state}} {{school.zip}}
+            {{school.city}}, {{school.state}} {{school.zip}}
           </p>
           <p>{{school.phone | phone_number}}</p>
           <p>District: <a href="/district/{{school.agency_slug}}">{{school.agency}}</a></p>
