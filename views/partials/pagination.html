@@ -1,19 +1,21 @@
-<ul id="pagination" class="pagination-sm pagination">
-  <li class="page-item first">
-    <a href="?page=1" class="page-link">First</a>
-  </li>
-  <li class="page-item prev">
-    <a href="?page={{pagination.prevPage}}" class="page-link">Previous</a>
-  </li>
-  {% for i in range(pagination.startPage, pagination.endPage + 1) -%}
-    <li class="page-item {% if pagination.currentPage == i%}active{% endif %}">
-      <a href="?page={{i}}" class="page-link">{{i}}</a>
+{% if pagination.startPage != pagination.endPage %}
+  <ul id="pagination" class="pagination-sm pagination">
+    <li class="page-item first">
+      <a href="?page=1" class="page-link">First</a>
     </li>
-  {%- endfor %}
-  <li class="page-item next">
-    <a href="?page={{pagination.nextPage}}" class="page-link">Next</a>
-  </li>
-  <li class="page-item last">
-    <a href="?page={{pagination.totalPage}}" class="page-link">Last</a>
-  </li>
-</ul>
+    <li class="page-item prev">
+      <a href="?page={{pagination.prevPage}}" class="page-link">Previous</a>
+    </li>
+    {% for i in range(pagination.startPage, pagination.endPage + 1) -%}
+      <li class="page-item {% if pagination.currentPage == i%}active{% endif %}">
+        <a href="?page={{i}}" class="page-link">{{i}}</a>
+      </li>
+    {%- endfor %}
+    <li class="page-item next">
+      <a href="?page={{pagination.nextPage}}" class="page-link">Next</a>
+    </li>
+    <li class="page-item last">
+      <a href="?page={{pagination.totalPage}}" class="page-link">Last</a>
+    </li>
+  </ul>
+{% endif %}

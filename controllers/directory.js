@@ -10,7 +10,7 @@ function getPaginationData(currentPage, totalPage) {
   var NUM_PAGES = 5;
   var startPage = Math.max(1, currentPage - Math.floor(NUM_PAGES / 2));
   if (startPage > totalPage - NUM_PAGES + 1) {
-    startPage = totalPage - NUM_PAGES + 1;
+    startPage = Math.max(1, totalPage - NUM_PAGES + 1);
   }
 
   return {
