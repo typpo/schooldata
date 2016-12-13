@@ -64,82 +64,100 @@ tr.indent td {
                 </tr>
               </thead>
               <tbody>
-                {% if school.grade_1_students != -2 %}
+                {% if school.prekindergarten_students > 0 %}
+                  <tr>
+                    <td>Pre-K</td>
+                    <td>{{school.prekindergarten_students}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.kindergarten_students > 0 %}
+                  <tr>
+                    <td>Kindergarten</td>
+                    <td>{{school.kindergarten_students}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.grade_1_students > 0 %}
                   <tr>
                     <td>Grade 1</td>
                     <td>{{school.grade_1_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_2_students != -2 %}
+                {% if school.grade_2_students > 0 %}
                   <tr>
                     <td>Grade 2</td>
                     <td>{{school.grade_2_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_3_students != -2 %}
+                {% if school.grade_3_students > 0 %}
                   <tr>
                     <td>Grade 3</td>
                     <td>{{school.grade_3_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_4_students != -2 %}
+                {% if school.grade_4_students > 0 %}
                   <tr>
                     <td>Grade 4</td>
                     <td>{{school.grade_4_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_5_students != -2 %}
+                {% if school.grade_5_students > 0 %}
                   <tr>
                     <td>Grade 5</td>
                     <td>{{school.grade_5_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_6_students != -2 %}
+                {% if school.grade_6_students > 0 %}
                   <tr>
                     <td>Grade 6</td>
                     <td>{{school.grade_6_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_7_students != -2 %}
+                {% if school.grade_7_students > 0 %}
                   <tr>
                     <td>Grade 7</td>
                     <td>{{school.grade_7_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_8_students != -2 %}
+                {% if school.grade_8_students > 0 %}
                   <tr>
                     <td>Grade 8</td>
                     <td>{{school.grade_8_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_9_students != -2 %}
+                {% if school.grade_9_students > 0 %}
                   <tr>
                     <td>Grade 9</td>
                     <td>{{school.grade_9_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_10_students != -2 %}
+                {% if school.grade_10_students > 0 %}
                   <tr>
                     <td>Grade 10</td>
                     <td>{{school.grade_10_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_11_students != -2 %}
+                {% if school.grade_11_students > 0 %}
                   <tr>
                     <td>Grade 11</td>
                     <td>{{school.grade_11_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_12_students != -2 %}
+                {% if school.grade_12_students > 0 %}
                   <tr>
                     <td>Grade 12</td>
                     <td>{{school.grade_12_students}}</td>
                   </tr>
                 {% endif %}
-                {% if school.grade_13_students != -2 %}
+                {% if school.grade_13_students > 0 %}
                   <tr>
                     <td>Grade 13</td>
                     <td>{{school.grade_13_students}}</td>
+                  </tr>
+                {% endif %}
+                {% if school.ungraded_students > 0 %}
+                  <tr>
+                    <td>Unknown</td>
+                    <td>{{school.ungraded_students}}</td>
                   </tr>
                 {% endif %}
               </tbody>

@@ -30,6 +30,8 @@ var schoolSchema = new Schema({
   classroom_teachers_total: Number,
   total_students_all_grades_includes_ae: Number,
 
+  prekindergarten_students: Number,
+  kindergarten_students: Number,
   grade_1_students: Number,
   grade_2_students: Number,
   grade_3_students: Number,
@@ -43,6 +45,7 @@ var schoolSchema = new Schema({
   grade_11_students: Number,
   grade_12_students: Number,
   grade_13_students: Number,
+  ungraded_students: Number,
 
   all_students_american_indian_alaska_native: Number,
   all_students_american_indian_alaska_native_female: Number,
