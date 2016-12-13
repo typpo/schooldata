@@ -13,15 +13,14 @@ function getPaginationData(currentPage, totalPage) {
     startPage = totalPage - NUM_PAGES + 1;
   }
 
-  console.log(startPage);
-  console.log(startPage + NUM_PAGES);
-  console.log(totalPage);
-  return {currentPage: currentPage,
+  return {
+    currentPage: currentPage,
     prevPage: Math.max(1, currentPage - 1),
     nextPage: Math.min(totalPage, currentPage + 1),
     totalPage: totalPage,
     startPage: startPage,
-    endPage: Math.min(totalPage, startPage + NUM_PAGES - 1)};
+    endPage: Math.min(totalPage, startPage + NUM_PAGES - 1)
+  };
 }
 
 /**
