@@ -28,10 +28,15 @@
     <div class="col-sm-12">
       <div class="panel">
         <div class="panel-body">
-          <h3><a href="/school/{{school.slug}}">{{school.name}}</a></h3>
-          <p>{{school.street_address}}, {{school.city}} {{school.state}} {{school.zip}}</p>
+          <h3><a href="/school/{{school.getSlug()}}">{{school.name}}</a></h3>
+          <p>
+            {% if school.getStreetAddress() %}
+              {{school.getStreetAddress()}},
+            {% endif %}
+            {{school.city}} {{school.state}} {{school.zip}}
+          </p>
           <p>{{school.phone | phone_number}}</p>
-          <p>Agency: {{school.agency}}</p>
+          <p>District: {{school.agency}}</p>
           <p>Type: {{school.type}}</p>
           <div>
             <img src="{{map.url}}" />
