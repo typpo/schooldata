@@ -26,6 +26,7 @@ SLUG_MAPPINGS = {
     'telephone_number': 'phone',
     'education_agency_name': 'agency',
     'school_type_description': 'type',
+    'classroom_teachers_total_full_time_equivalent_classroom_teachers_full_time_equivalency_reported_to_the_nearest_hundredth_field_includes_two_explicit_decimal_places': 'classroom_teachers_total',
 }
     # 'street_address'
     # 'mailing_address'
