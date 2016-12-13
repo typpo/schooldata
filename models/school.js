@@ -5,8 +5,8 @@ var slug = require('slug');
 var Schema = mongoose.Schema;
 
 var schoolSchema = new Schema({
-  //'slug': String,
-  //'agency_slug': String,
+  'slug': String,
+  'agency_slug': String,
 
   'name': String,
   //'street_address': String,
@@ -27,16 +27,6 @@ var schoolSchema = new Schema({
   location_address_street_2: String,
   location_address_street_3: String,
 });
-
-// NOTE that these slug methods rely on node slug matching the beavhior of
-// python-slug.
-schoolSchema.methods.getSlug = function() {
-  return slug(this.name, '_');
-};
-
-schoolSchema.methods.getAgencySlug = function() {
-  return slug(this.agency, '_');
-};
 
 schoolSchema.methods.getStreetAddress = function() {
   if (!this.location_address_street_1) {

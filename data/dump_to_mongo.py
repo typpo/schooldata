@@ -15,7 +15,7 @@ def import_content(db, collection, filepath):
     cdir = os.path.dirname(__file__)
     file_res = os.path.join(cdir, filepath)
 
-    data = pd.read_csv(file_res)
+    data = pd.read_csv(file_res, engine='python')
     data_json = json.loads(data.to_json(orient='records'))
     db_cm.remove()
     db_cm.insert(data_json)

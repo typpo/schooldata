@@ -49,6 +49,8 @@ def load_annotated_dataframe(data_path, defs_path):
     defs = pd.read_excel(defs_path, verbose=True)
     abbrevs_to_desc = dict(zip(defs['Variable Name'].values, defs['Description'].values))
     data.columns = [get_slug(colname, abbrevs_to_desc) for colname in data.columns]
+    data['slug'] = pd.Series([slugify(name, separator='_') for name in data['name'].values])
+    data['agency_slug'] = pd.Series([slugify(name, separator='_') for name in data['agency'].values])
     # TODO add name slug for name and agency, create address, etc.
     data.set_index('nces_school_identifier')
     return data
