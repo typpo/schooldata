@@ -12,7 +12,7 @@ exports.index = function(req, res) {
   var filter = {};
 
   if (req.params.directory) {
-    console.log('Getting school data for ' + req.params.directory);
+    console.log('Getting directory data for ' + req.params.directory);
     // Example directory: CA-schools, 94043-schools.
     var loc = req.params.directory.split('-')[0];
     if (/^\d+$/.test(loc)) {
@@ -25,7 +25,7 @@ exports.index = function(req, res) {
   }
 
   if (req.params.district) {
-    console.log('Getting school data for ' + req.params.district);
+    console.log('Getting directory data for ' + req.params.district);
     filter.agency_slug = req.params.district;
   }
 

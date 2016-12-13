@@ -11,6 +11,7 @@ def import_content(db, collection, filepath):
     mng_client = pymongo.MongoClient('localhost', 27017)
     mng_db = mng_client[db]
     db_cm = mng_db[collection]
+    db_cm.drop()
     cdir = os.path.dirname(__file__)
     file_res = os.path.join(cdir, filepath)
 

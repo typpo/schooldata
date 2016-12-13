@@ -27,7 +27,8 @@
     "nodemon": "^1.9.1",
     "npm-run-all": "^1.8.0",
     "nunjucks": "^2.4.1",
-    "nunjucks-phone-filter": "0.0.1"
+    "nunjucks-phone-filter": "0.0.1",
+    "slug": "^0.9.1"
   },
   "devDependencies": {},
   "engines": {
