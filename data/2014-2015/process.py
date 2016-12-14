@@ -51,15 +51,26 @@ def load_annotated_dataframe(data_path, defs_path):
     defs = pd.read_excel(defs_path)
     abbrevs_to_desc = dict(zip(defs['Variable Name'].values, defs['Description'].values))
     data.columns = [get_slug(colname, abbrevs_to_desc) for colname in data.columns]
-    data['slug'] = pd.Series([slugify(name, separator='_') for name in data['name'].values])
-    data['agency_slug'] = pd.Series([slugify(name, separator='_') for name in data['agency'].values])
+
+    # Concat NCES id.
     data['nces_uid'] = pd.Series([x[0] + x[1] \
             for x in zip(data['nces_school_identifier'].values, \
                          data['nces_agency_identification_number'].values)])
-    # TODO add name slug for name and agency, create address, etc.
-    # data.set_index(['nces_school_identifier', 'nces_agency_identification_number'], inplace=True)
+
     data.set_index(['nces_uid'], inplace=True)
     return data
+
+def postprocess(data):
+    # Slugs.
+    data['slug'] = pd.Series([slugify(name, separator='_') for name in data['name'].values])
+    data['agency_slug'] = pd.Series([slugify(name, separator='_') for name in data['agency'].values])
+
+    # Compute student-teacher ratio.
+    data['student_teacher_ratio'] = data['total_students_all_grades_includes_ae'] / data['classroom_teachers_total']
+
+    # Clean up some capitalization.
+    data['name'] = [s.title() for s in data['name'].values]
+    data['agency'] = [s.title() for s in data['agency'].values]
 
 print 'Loading...'
 dfs = [load_annotated_dataframe(pair[0], pair[1]) for pair in PAIRS]
@@ -71,6 +82,9 @@ for df in dfs:
     x = x.combine_first(df)
     #x= x.merge(df.ix[:,df.columns-x.columns], left_index=True, right_index=True, how="outer")
 print x.shape
+
+print 'Postprocessing...'
+postprocess(x)
 
 print 'Writing...'
 x.to_csv('processed_data.csv')
