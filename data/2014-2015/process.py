@@ -60,6 +60,20 @@ def load_annotated_dataframe(data_path, defs_path):
     data.set_index(['nces_uid'], inplace=True)
     return data
 
+def compute_diversity(data):
+    total = data['total_students_all_grades_includes_ae']
+    target = 1 / 6.
+
+    scores = []
+    scores.append((data['all_students_white'] / total - target).abs())
+    scores.append((data['all_students_american_indian_alaska_native'] / total - target).abs())
+    scores.append((data['all_students_asian'] / total - target).abs())
+    scores.append((data['all_students_black'] / total - target).abs())
+    scores.append((data['all_students_hawaiian_native_pacific_islander'] / total - target).abs())
+    scores.append((data['all_students_hispanic'] / total - target).abs())
+
+    return reduce(lambda x,y: x + y, scores[1:], scores[0])
+
 def postprocess(data):
     # Slugs.
     data['slug'] = data['name'].map(lambda name: slugify(name, separator='_'))
@@ -71,6 +85,10 @@ def postprocess(data):
     # Clean up some capitalization.
     data['name'] = data['name'].map(lambda s: s.title())
     data['agency'] = data['agency'].map(lambda s: s.title())
+
+    # Diversity
+    data['diversity_score'] = compute_diversity(data)
+
     return data
 
 print 'Loading...'

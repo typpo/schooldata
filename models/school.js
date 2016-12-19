@@ -118,7 +118,10 @@ schoolSchema.methods.getRoundedNumberOfTeachers = function() {
 };
 
 schoolSchema.methods.getStudentTeacherRatio = function() {
-  return this.student_teacher_ratio.toFixed(1);
+  if (this.student_teacher_ratio) {
+    return this.student_teacher_ratio.toFixed(1);
+  }
+  return '?';
 };
 
 schoolSchema.plugin(mongoosePaginate);
