@@ -13,7 +13,7 @@ var schoolSchema = new Schema({
   //'mailing_address': String,
   'city': String,
   'state': String,
-  'zip': Number,
+  'zip': String,
   'phone': String,
   'agency': String,
   'type': String,
