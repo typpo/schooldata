@@ -28,6 +28,9 @@ SLUG_MAPPINGS = {
     'education_agency_name': 'agency',
     'school_type_description': 'type',
     'classroom_teachers_total_full_time_equivalent_classroom_teachers_full_time_equivalency_reported_to_the_nearest_hundredth_field_includes_two_explicit_decimal_places': 'classroom_teachers_total',
+    'count_of_students_eligible_to_participate_in_the_free_lunch_program_under_the_national_school_lunch_act': 'num_free_lunch_eligible',
+    'count_of_students_eligible_to_participate_in_the_reduced_price_lunch_program_under_the_national_school_lunch_act': 'num_reduced_lunch_eligible',
+    'school_wide_title_i_this_flag_indicates_whether_a_school_is_eligible_for_participation_in_schoolwide_program_authorized_by_title_i_of_public_law_103_382': 'title_i_eligible',
 }
     # 'street_address'
     # 'mailing_address'

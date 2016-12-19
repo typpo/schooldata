@@ -52,7 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', HomeController.index);
 app.get('/contact', ContactController.contactGet);
 app.post('/contact', ContactController.contactPost);
-app.get('/school/:slug', SchoolController.index);
+app.get('/school/:state/:slug', SchoolController.index);
 // Handles routes like CA-schools, 94043-shools.
 app.get('/:directory', DirectoryController.index);
 app.get('/district/:district', DirectoryController.index);

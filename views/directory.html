@@ -29,7 +29,7 @@
     <div class="col-sm-12">
       <div class="panel">
         <div class="panel-body">
-          <h3><a href="/school/{{school.slug}}">{{school.name}}</a></h3>
+          <h3><a href="/school/{{school.getUrl()}}">{{school.name}}</a></h3>
           <p>
             {% if school.getStreetAddress() %}
               {{school.getStreetAddress()}},

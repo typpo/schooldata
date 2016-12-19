@@ -125,6 +125,10 @@ schoolSchema.methods.getStudentTeacherRatio = function() {
   return '?';
 };
 
+schoolSchema.methods.getUrl = function() {
+  return '/schools/' + this.state + '/' + this.slug;
+};
+
 schoolSchema.plugin(mongoosePaginate);
 var School = mongoose.model('School', schoolSchema);
 

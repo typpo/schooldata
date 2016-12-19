@@ -12,8 +12,8 @@ function getStreetViewUrl(lat, lng) {
  * GET school data.
  */
 exports.index = function(req, res) {
-  console.log('Getting school data for ' + req.params.slug);
-  School.findOne({slug: req.params.slug}).then(function(school) {
+  console.log('Getting school data for ', req.params.slug, req.params.state);
+  School.findOne({slug: req.params.slug, state: req.params.state}).then(function(school) {
     res.render('school', {
       page: {
         selection: 'Schools',

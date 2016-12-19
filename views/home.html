@@ -36,27 +36,50 @@
     <div class="col-sm-8">
       <div class="panel ranking-list">
         <div class="panel-body">
+          <h3>Best Student-Teacher Ratio</h3>
+          <p>Meow meow</p>
+          <br>
+          <div class="col-sm-7">
+            {% for school in rankings.school_student_teacher_ratio %}
+              {% include "partials/homepage_school.html" %}
+            {% endfor %}
+          </div>
+          <div class="col-sm-5">
+            <img src="http://img-aws.ehowcdn.com/300x200/photos.demandstudios.com/getty/article/56/9/78404083_XS.jpg">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="panel ranking-list">
+        <div class="panel-body">
           <h3>Most Diverse Schools</h3>
           <p>Attending a school with a diverse student body can help prepare your child for citizenship in a multicultural democracy. As the United States becomes a more culturally and ethnically diverse nation, public schools are becoming more diverse, too.</p>
           <br>
           <div class="col-sm-7">
             {% for school in rankings.school_diversity  %}
-              <ul>
-                <li>
-                  <div class="ranking-list-icon">
-                    <span class="glyphicon glyphicon-education"></span>
-                  </div>
-                  <div class="ranking-list-rank">#{{ loop.index }}</div>
-                  <div class="ranking-list-name">
-                    <a href="/school/{{school.slug}}">{{school.name}}</a>
-                    <div class="text-muted">{{school.city}}, {{school.state}}</div>
-                  </div>
-                </li>
-              </ul>
+              {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>
           <div class="col-sm-5">
             <img src="http://www.theprospect.net/wp-content/uploads/2013/12/DiverseStudents.jpg">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="panel ranking-list">
+        <div class="panel-body">
+          <h3>Largest Schools</h3>
+          <p>Meow meow</p>
+          <br>
+          <div class="col-sm-7">
+            {% for school in rankings.school_size %}
+              {% include "partials/homepage_school.html" %}
+            {% endfor %}
+          </div>
+          <div class="col-sm-5">
+            <img src="https://i.imgur.com/BGjnoEG.jpg">
           </div>
         </div>
       </div>
