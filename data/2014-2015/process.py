@@ -81,14 +81,16 @@ def postprocess(data):
     total = data['total_students_all_grades_includes_ae']
 
     # Slugs.
-    data['slug'] = data['name'].map(lambda name: slugify(name, separator='_'))
+    if 'name' in data:
+        data['slug'] = data['name'].map(lambda name: slugify(name, separator='_'))
     data['agency_slug'] = data['agency'].map(lambda name: slugify(name, separator='_'))
 
     # Compute student-teacher ratio.
     data['student_teacher_ratio'] = total / data['classroom_teachers_total']
 
     # Clean up some capitalization.
-    data['name'] = data['name'].map(lambda s: s.title())
+    if 'name' in data:
+        data['name'] = data['name'].map(lambda s: s.title())
     data['agency'] = data['agency'].map(lambda s: s.title())
 
     # Diversity
@@ -99,38 +101,44 @@ def postprocess(data):
 
     return data
 
+def insert_dataframe_to_mongo(data, dbname, collname):
+    mng_client = pymongo.MongoClient('localhost', 27017)
+    mng_db = mng_client[dbname]
+    db_cm = mng_db[collname]
+    db_cm.drop()
+    db_cm.remove()
+
+    batch = []
+    for index, row in data.iterrows():
+        batch.append(dict(zip(data.columns, row.values)))
+        if len(batch) > 50000:
+            db_cm.insert_many(batch)
+            batch = []
+
 print 'Loading...'
 dfs = [load_annotated_dataframe(pair[0], pair[1]) for pair in PAIRS]
 
 print 'Combining...'
-x = pd.DataFrame()
+schools = pd.DataFrame()
 for df in dfs:
     # See https://pandas-docs.github.io/pandas-docs-travis/basics.html#general-dataframe-combine
-    x = x.combine_first(df)
-    #x= x.merge(df.ix[:,df.columns-x.columns], left_index=True, right_index=True, how="outer")
-print x.shape
+    schools = schools.combine_first(df)
+print schools.shape
 
 print 'Postprocessing...'
-x = postprocess(x)
-
-print 'Writing...'
-# x.to_csv('processed_data.csv')
+schools = postprocess(schools)
 
 print 'Inserting to schools:schools...'
-mng_client = pymongo.MongoClient('localhost', 27017)
-mng_db = mng_client['schools']
-db_cm = mng_db['schools']
-db_cm.drop()
-db_cm.remove()
+insert_dataframe_to_mongo(schools, 'schools', 'schools')
 
-#data_json = json.loads(x.fillna(-99).to_json(orient='records'))
-#db_cm.insert(data_json)
-batch = []
-for index, row in x.iterrows():
-    batch.append(dict(zip(x.columns, row.values)))
-    if len(batch) > 50000:
-        db_cm.insert_many(batch)
-        batch = []
+# Group into districts.
+print 'Grouping by districts...'
+districts = schools.groupby(['agency_slug', 'nces_agency_identification_number', 'agency']).sum().reset_index()
+print districts.shape
+print 'Postprocessing...'
+districts = postprocess(districts)
+print 'Inserting to schools:districts...'
+insert_dataframe_to_mongo(districts, 'schools', 'districts')
 
 print 'Done.'
 
