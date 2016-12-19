@@ -33,8 +33,8 @@ function prequery(Model, rankingsType) {
     // Threshold of 30 so we only pick up real schools.
     total_students_all_grades_includes_ae: {$gt: 30},
     classroom_teachers_total: {$gt: 30},
-    // Exclude vocational.
-    // type: 'Regular School',
+    // Hack: exclude vocational schools.
+    type: rankingsType === 'school' ? 'Regular School' : undefined,
   }, undefined, {
     limit: NUM_ITEMS_IN_RANKING,
     sort: {

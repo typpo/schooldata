@@ -16,6 +16,8 @@ var districtSchema = new Schema({
 
   nces_agency_identification_number: String,
 
+  school_count: Number,
+
   location_address_street_1: String,
   location_address_street_2: String,
   location_address_street_3: String,

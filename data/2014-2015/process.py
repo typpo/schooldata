@@ -135,7 +135,10 @@ insert_dataframe_to_mongo(schools, 'schools', 'schools')
 
 # Group into districts.
 print 'Grouping by districts...'
-districts = schools.groupby(['agency_slug', 'nces_agency_identification_number', 'agency', 'city', 'state']).sum().reset_index()
+districts_groupby = schools.groupby(['agency_slug', 'nces_agency_identification_number', 'agency', 'city', 'state'])
+districts = districts_groupby.sum()
+districts['school_count'] = districts_groupby['nces_agency_identification_number'].transform('count')
+districts.reset_index(inplace=True)
 print districts.shape
 print 'Postprocessing...'
 districts = postprocess(districts)
