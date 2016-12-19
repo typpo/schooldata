@@ -5970,3 +5970,18 @@ textarea {
 img {
   width: 100%; }
 
+.ranking-list li {
+  display: table-row !important; }
+
+.ranking-list-icon {
+  display: table-cell !important;
+  width: 1.5em; }
+
+.ranking-list-rank {
+  display: table-cell !important;
+  width: 2em; }
+
+.ranking-list-name {
+  display: table-cell !important;
+  padding-bottom: 0.5rem; }
+
