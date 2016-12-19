@@ -5970,18 +5970,24 @@ textarea {
 img {
   width: 100%; }
 
+.ranking-list {
+  min-height: 560px; }
+
+.ranking-list ul {
+  padding: 0; }
+
 .ranking-list li {
-  display: table-row !important; }
+  display: table-row; }
 
 .ranking-list-icon {
-  display: table-cell !important;
+  display: table-cell;
   width: 1.5em; }
 
 .ranking-list-rank {
-  display: table-cell !important;
+  display: table-cell;
   width: 2em; }
 
 .ranking-list-name {
-  display: table-cell !important;
-  padding-bottom: 0.5rem; }
+  display: table-cell;
+  padding-bottom: 0.5em; }
 

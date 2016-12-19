@@ -241,10 +241,18 @@ textarea {
   text-transform: uppercase;
 }
 
-// Homes
+// Home
 // -------------------------
 img {
   width: 100%;
+}
+
+.ranking-list {
+  min-height: 560px;
+}
+
+.ranking-list ul {
+  padding: 0;
 }
 
 .ranking-list li {
