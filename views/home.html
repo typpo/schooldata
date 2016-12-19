@@ -40,18 +40,20 @@
           <p>Attending a school with a diverse student body can help prepare your child for citizenship in a multicultural democracy. As the United States becomes a more culturally and ethnically diverse nation, public schools are becoming more diverse, too.</p>
           <br>
           <div class="col-sm-7">
-            <ul>
-              <li>
-                <div class="ranking-list-icon">
-                  <span class="glyphicon glyphicon-education"></span>
-                </div>
-                <div class="ranking-list-rank">#1</div>
-                <div class="ranking-list-name">
-                  <a href="">Moutain View High School</a>
-                  <div class="text-muted">Mountain View, CA</div>
-                </div>
-              </li>
-            </ul>
+            {% for school in rankings.school_diversity  %}
+              <ul>
+                <li>
+                  <div class="ranking-list-icon">
+                    <span class="glyphicon glyphicon-education"></span>
+                  </div>
+                  <div class="ranking-list-rank">#{{ loop.index }}</div>
+                  <div class="ranking-list-name">
+                    <a href="/school/{{school.slug}}">{{school.name}}</a>
+                    <div class="text-muted">{{school.city}}, {{school.state}}</div>
+                  </div>
+                </li>
+              </ul>
+            {% endfor %}
           </div>
           <div class="col-sm-5">
             <img src="http://www.theprospect.net/wp-content/uploads/2013/12/DiverseStudents.jpg">

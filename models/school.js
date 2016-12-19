@@ -33,6 +33,7 @@ var schoolSchema = new Schema({
   classroom_teachers_total: Number,
   total_students_all_grades_includes_ae: Number,
   student_teacher_ratio: Number,
+  diversity_score: Number,
 
   prekindergarten_students: Number,
   kindergarten_students: Number,
