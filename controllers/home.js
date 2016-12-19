@@ -1,5 +1,8 @@
 var School = require('../models/school');
 
+// Number of places to list in rankings.
+var NUM_ITEMS_IN_RANKING = 5;
+
 // Rankings that are loaded on startup and displayed on the home page.
 var rankings = {
   school_diversity: [],
@@ -12,7 +15,7 @@ function onStartup() {
 
   // Diversity.
   School.find({total_students_all_grades_includes_ae: {$gt: 0}}, undefined, {
-    limit: 10,
+    limit: NUM_ITEMS_IN_RANKING,
     sort: {
       diversity_score: 1,
     },
@@ -33,7 +36,7 @@ function onStartup() {
     // Exclude vocational.
     type: 'Regular School',
   }, undefined, {
-    limit: 10,
+    limit: NUM_ITEMS_IN_RANKING,
     sort: {
       student_teacher_ratio: 1,
     },
@@ -51,7 +54,7 @@ function onStartup() {
     total_students_all_grades_includes_ae: {$gt: 0},
     classroom_teachers_total: {$gt: 0},
   }, undefined, {
-    limit: 10,
+    limit: NUM_ITEMS_IN_RANKING,
     sort: {
       total_students_all_grades_includes_ae: -1,
     },
@@ -69,7 +72,7 @@ function onStartup() {
     total_students_all_grades_includes_ae: {$gt: 0},
     classroom_teachers_total: {$gt: 0},
   }, undefined, {
-    limit: 10,
+    limit: NUM_ITEMS_IN_RANKING,
     sort: {
       free_or_reduced_lunch_ratio: -1,
     },
