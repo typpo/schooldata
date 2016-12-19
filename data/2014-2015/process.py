@@ -18,6 +18,28 @@ PAIRS = [
     ['./ccd_sch_033_1415_w_0216161a.txt', './2014-15 CCD Companion_SCH Free Lunch_File_Layout.xlsx'],
 ]
 
+# Words that should be replaced (all lowercase).
+REPLACE_WORDS_SCHOOLS = {
+    'elem': 'elementary',
+    'chrtr': 'charter',
+    'es': 'elementary school',
+    'ms': 'middle school',
+    'hs': 'high school',
+    'ec': 'education campus',
+    'cs': 'charter school',
+    'acad': 'academy',
+    'intl': 'international',
+    'ib': 'IB',
+    'ctr': 'center',
+    'sci': 'science',
+    'sch': 'school',
+}
+
+REPLACE_WORDS_DISTRICTS = {
+    'isd': 'intermediate school district',
+    'sd': 'school district',
+}
+
 # Map from slugs to simplified slugs.
 SLUG_MAPPINGS = {
     'school_name': 'name',
