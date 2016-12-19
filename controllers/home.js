@@ -34,7 +34,7 @@ function prequery(Model, rankingsType) {
     total_students_all_grades_includes_ae: {$gt: 30},
     classroom_teachers_total: {$gt: 30},
     // Exclude vocational.
-    type: 'Regular School',
+    // type: 'Regular School',
   }, undefined, {
     limit: NUM_ITEMS_IN_RANKING,
     sort: {
@@ -78,7 +78,7 @@ function prequery(Model, rankingsType) {
     },
   }, function(err, results) {
     if (err) {
-      console.error('Error: could not query school lunch on startup');
+      console.error('Error: could not query', rankingsType, 'lunch on startup');
       return;
     }
     rankings[rankingsType].lunch = results;

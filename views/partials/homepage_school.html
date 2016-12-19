@@ -5,8 +5,8 @@
     </div>
     <div class="ranking-list-rank">#{{ loop.index }}</div>
     <div class="ranking-list-name">
-      <a href="{{school.getUrl()}}">{{school.name}}</a>
-      <div class="text-muted">{{school.city}}, {{school.state}}</div>
+      <a href="{{item.getUrl()}}">{{item.getName()}}</a>
+      <div class="text-muted">{{item.city}}, {{item.state}}</div>
     </div>
   </li>
 </ul>

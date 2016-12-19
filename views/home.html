@@ -44,13 +44,13 @@
           </div>
           <div class="col-md-4">
             <h4>Schools</h4>
-            {% for school in rankings.school.student_teacher_ratio %}
+            {% for item in rankings.school.student_teacher_ratio %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>
           <div class="col-md-4">
             <h4>Districts</h4>
-            {% for school in rankings.district.student_teacher_ratio %}
+            {% for item in rankings.district.student_teacher_ratio %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>
@@ -67,7 +67,7 @@
           <p>Attending a school with a diverse student body can help prepare your child for citizenship in a multicultural democracy. As the United States becomes a more culturally and ethnically diverse nation, public schools are becoming more diverse, too.</p>
           <br>
           <div class="col-sm-7">
-            {% for school in rankings.school.diversity  %}
+            {% for item in rankings.school.diversity  %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>
@@ -84,7 +84,7 @@
           <p>Attending a school with a diverse student body can help prepare your child for citizenship in a multicultural democracy. As the United States becomes a more culturally and ethnically diverse nation, public schools are becoming more diverse, too.</p>
           <br>
           <div class="col-sm-7">
-            {% for school in rankings.district.diversity  %}
+            {% for item in rankings.district.diversity  %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>
@@ -101,7 +101,7 @@
           <p>Meow meow</p>
           <br>
           <div class="col-sm-7">
-            {% for school in rankings.school.size %}
+            {% for item in rankings.school.size %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>
@@ -118,7 +118,7 @@
           <p>Meow meow</p>
           <br>
           <div class="col-sm-7">
-            {% for school in rankings.district.size %}
+            {% for item in rankings.district.size %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>
@@ -135,7 +135,7 @@
           <p>Meow meow</p>
           <br>
           <div class="col-sm-7">
-            {% for school in rankings.school.lunch %}
+            {% for item in rankings.school.lunch %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>
@@ -152,7 +152,7 @@
           <p>Meow meow</p>
           <br>
           <div class="col-sm-7">
-            {% for school in rankings.district.lunch %}
+            {% for item in rankings.district.lunch %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>

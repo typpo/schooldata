@@ -80,6 +80,10 @@ var schoolSchema = new Schema({
   all_students_white_male: Number,
 });
 
+schoolSchema.methods.getName = function() {
+  return this.name;
+};
+
 schoolSchema.methods.getStreetAddress = function() {
   // NaNs come from pandas.
   if (!this.location_address_street_1 || this.location_address_street_1 === 'NaN') {

@@ -70,6 +70,10 @@ var districtSchema = new Schema({
   all_students_white_male: Number,
 });
 
+districtSchema.methods.getName = function() {
+  return this.agency;
+};
+
 districtSchema.methods.getStreetAddress = function() {
   // NaNs come from pandas.
   if (!this.location_address_street_1 || this.location_address_street_1 === 'NaN') {
