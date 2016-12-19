@@ -51,14 +51,26 @@ def load_annotated_dataframe(data_path, defs_path):
     defs = pd.read_excel(defs_path)
     abbrevs_to_desc = dict(zip(defs['Variable Name'].values, defs['Description'].values))
     data.columns = [get_slug(colname, abbrevs_to_desc) for colname in data.columns]
-    data['slug'] = pd.Series([slugify(name, separator='_') for name in data['name'].values])
-    data['agency_slug'] = pd.Series([slugify(name, separator='_') for name in data['agency'].values])
+
+    # Concat NCES id.
     data['nces_uid'] = pd.Series([x[0] + x[1] \
             for x in zip(data['nces_school_identifier'].values, \
                          data['nces_agency_identification_number'].values)])
-    # TODO add name slug for name and agency, create address, etc.
-    # data.set_index(['nces_school_identifier', 'nces_agency_identification_number'], inplace=True)
+
     data.set_index(['nces_uid'], inplace=True)
+    return data
+
+def postprocess(data):
+    # Slugs.
+    data['slug'] = data['name'].map(lambda name: slugify(name, separator='_'))
+    data['agency_slug'] = data['agency'].map(lambda name: slugify(name, separator='_'))
+
+    # Compute student-teacher ratio.
+    data['student_teacher_ratio'] = data['total_students_all_grades_includes_ae'] / data['classroom_teachers_total']
+
+    # Clean up some capitalization.
+    data['name'] = data['name'].map(lambda s: s.title())
+    data['agency'] = data['agency'].map(lambda s: s.title())
     return data
 
 print 'Loading...'
@@ -72,8 +84,11 @@ for df in dfs:
     #x= x.merge(df.ix[:,df.columns-x.columns], left_index=True, right_index=True, how="outer")
 print x.shape
 
+print 'Postprocessing...'
+x = postprocess(x)
+
 print 'Writing...'
-x.to_csv('processed_data.csv')
+# x.to_csv('processed_data.csv')
 
 print 'Inserting to schools:schools...'
 mng_client = pymongo.MongoClient('localhost', 27017)

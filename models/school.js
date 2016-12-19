@@ -13,7 +13,7 @@ var schoolSchema = new Schema({
   //'mailing_address': String,
   'city': String,
   'state': String,
-  'zip': Number,
+  'zip': String,
   'phone': String,
   'agency': String,
   'type': String,
@@ -32,6 +32,7 @@ var schoolSchema = new Schema({
 
   classroom_teachers_total: Number,
   total_students_all_grades_includes_ae: Number,
+  student_teacher_ratio: Number,
 
   prekindergarten_students: Number,
   kindergarten_students: Number,
@@ -117,7 +118,7 @@ schoolSchema.methods.getRoundedNumberOfTeachers = function() {
 };
 
 schoolSchema.methods.getStudentTeacherRatio = function() {
-  return (this.total_students_all_grades_includes_ae / parseFloat(this.classroom_teachers_total)).toFixed(1);
+  return this.student_teacher_ratio.toFixed(1);
 };
 
 schoolSchema.plugin(mongoosePaginate);
