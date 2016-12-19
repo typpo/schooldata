@@ -42,7 +42,24 @@
           <p>Meow meow</p>
           <br>
           <div class="col-sm-7">
-            {% for school in rankings.school_student_teacher_ratio %}
+            {% for school in rankings.school.student_teacher_ratio %}
+              {% include "partials/homepage_school.html" %}
+            {% endfor %}
+          </div>
+          <div class="col-sm-5">
+            <img src="http://img-aws.ehowcdn.com/300x200/photos.demandstudios.com/getty/article/56/9/78404083_XS.jpg">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel ranking-list">
+        <div class="panel-body">
+          <h3>Districts with Best Student-Teacher Ratio</h3>
+          <p>Meow meow</p>
+          <br>
+          <div class="col-sm-7">
+            {% for school in rankings.district.student_teacher_ratio %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>
@@ -59,7 +76,7 @@
           <p>Attending a school with a diverse student body can help prepare your child for citizenship in a multicultural democracy. As the United States becomes a more culturally and ethnically diverse nation, public schools are becoming more diverse, too.</p>
           <br>
           <div class="col-sm-7">
-            {% for school in rankings.school_diversity  %}
+            {% for school in rankings.school.diversity  %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>
@@ -76,7 +93,7 @@
           <p>Meow meow</p>
           <br>
           <div class="col-sm-7">
-            {% for school in rankings.school_size %}
+            {% for school in rankings.school.size %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>
@@ -93,7 +110,7 @@
           <p>Meow meow</p>
           <br>
           <div class="col-sm-7">
-            {% for school in rankings.school_lunch %}
+            {% for school in rankings.school.lunch %}
               {% include "partials/homepage_school.html" %}
             {% endfor %}
           </div>

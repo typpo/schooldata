@@ -102,6 +102,7 @@ def postprocess(data):
     return data
 
 def insert_dataframe_to_mongo(data, dbname, collname):
+    print 'Inserting to %s:%s...' % (dbname, collname)
     mng_client = pymongo.MongoClient('localhost', 27017)
     mng_db = mng_client[dbname]
     db_cm = mng_db[collname]
@@ -114,6 +115,7 @@ def insert_dataframe_to_mongo(data, dbname, collname):
         if len(batch) > 50000:
             db_cm.insert_many(batch)
             batch = []
+    db_cm.insert_many(batch)
 
 print 'Loading...'
 dfs = [load_annotated_dataframe(pair[0], pair[1]) for pair in PAIRS]
@@ -128,7 +130,6 @@ print schools.shape
 print 'Postprocessing...'
 schools = postprocess(schools)
 
-print 'Inserting to schools:schools...'
 insert_dataframe_to_mongo(schools, 'schools', 'schools')
 
 # Group into districts.
@@ -137,7 +138,6 @@ districts = schools.groupby(['agency_slug', 'nces_agency_identification_number',
 print districts.shape
 print 'Postprocessing...'
 districts = postprocess(districts)
-print 'Inserting to schools:districts...'
 insert_dataframe_to_mongo(districts, 'schools', 'districts')
 
 print 'Done.'
