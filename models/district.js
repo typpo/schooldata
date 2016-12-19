@@ -125,7 +125,7 @@ districtSchema.methods.getStudentTeacherRatio = function() {
 };
 
 districtSchema.methods.getUrl = function() {
-  return '/schools/' + this.state + '/' + this.slug;
+  return '/district/' + this.agency_slug;
 };
 
 districtSchema.plugin(mongoosePaginate);
