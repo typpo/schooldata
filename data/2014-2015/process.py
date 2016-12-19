@@ -62,15 +62,16 @@ def load_annotated_dataframe(data_path, defs_path):
 
 def postprocess(data):
     # Slugs.
-    data['slug'] = pd.Series([slugify(name, separator='_') for name in data['name'].values])
-    data['agency_slug'] = pd.Series([slugify(name, separator='_') for name in data['agency'].values])
+    data['slug'] = data['name'].map(lambda name: slugify(name, separator='_'))
+    data['agency_slug'] = data['agency'].map(lambda name: slugify(name, separator='_'))
 
     # Compute student-teacher ratio.
     data['student_teacher_ratio'] = data['total_students_all_grades_includes_ae'] / data['classroom_teachers_total']
 
     # Clean up some capitalization.
-    data['name'] = pd.Series([s.title() for s in data['name'].values])
-    data['agency'] = pd.Series([s.title() for s in data['agency'].values])
+    data['name'] = data['name'].map(lambda s: s.title())
+    data['agency'] = data['agency'].map(lambda s: s.title())
+    return data
 
 print 'Loading...'
 dfs = [load_annotated_dataframe(pair[0], pair[1]) for pair in PAIRS]
@@ -84,10 +85,10 @@ for df in dfs:
 print x.shape
 
 print 'Postprocessing...'
-postprocess(x)
+x = postprocess(x)
 
 print 'Writing...'
-x.to_csv('processed_data.csv')
+# x.to_csv('processed_data.csv')
 
 print 'Inserting to schools:schools...'
 mng_client = pymongo.MongoClient('localhost', 27017)
