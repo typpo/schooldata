@@ -82,13 +82,12 @@ function prequery(Model, rankingsType) {
       return;
     }
     rankings[rankingsType].lunch = results;
-    console.log(rankings);
     console.log('Queried', rankingsType, 'lunch rankings!');
   });
 }
 
 function onStartup() {
-  //prequery(School, 'school');
+  prequery(School, 'school');
   prequery(District, 'district');
 }
 
