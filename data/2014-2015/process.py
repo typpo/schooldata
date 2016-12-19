@@ -69,8 +69,8 @@ def postprocess(data):
     data['student_teacher_ratio'] = data['total_students_all_grades_includes_ae'] / data['classroom_teachers_total']
 
     # Clean up some capitalization.
-    data['name'] = [s.title() for s in data['name'].values]
-    data['agency'] = [s.title() for s in data['agency'].values]
+    data['name'] = pd.Series([s.title() for s in data['name'].values])
+    data['agency'] = pd.Series([s.title() for s in data['agency'].values])
 
 print 'Loading...'
 dfs = [load_annotated_dataframe(pair[0], pair[1]) for pair in PAIRS]
