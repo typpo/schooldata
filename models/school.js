@@ -35,6 +35,11 @@ var schoolSchema = new Schema({
   student_teacher_ratio: Number,
   diversity_score: Number,
 
+  num_free_lunch_eligible: Number,
+  num_reduced_lunch_eligible: Number,
+  free_or_reduced_lunch_ratio: Number,
+  title_i_eligible: String,
+
   prekindergarten_students: Number,
   kindergarten_students: Number,
   grade_1_students: Number,

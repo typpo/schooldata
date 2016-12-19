@@ -63,6 +63,24 @@ function onStartup() {
     rankings.school_size = schools;
     console.log('Queried school size rankings!');
   });
+
+  // School lunch.
+  School.find({
+    total_students_all_grades_includes_ae: {$gt: 0},
+    classroom_teachers_total: {$gt: 0},
+  }, undefined, {
+    limit: 10,
+    sort: {
+      free_or_reduced_lunch_ratio: -1,
+    },
+  }, function(err, schools) {
+    if (err) {
+      console.error('Error: could not query school lunch on startup');
+      return;
+    }
+    rankings.school_lunch = schools;
+    console.log('Queried school lunch rankings!');
+  });
 }
 
 onStartup();

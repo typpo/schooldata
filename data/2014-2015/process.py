@@ -78,12 +78,14 @@ def compute_diversity(data):
     return reduce(lambda x,y: x + y, scores[1:], scores[0])
 
 def postprocess(data):
+    total = data['total_students_all_grades_includes_ae']
+
     # Slugs.
     data['slug'] = data['name'].map(lambda name: slugify(name, separator='_'))
     data['agency_slug'] = data['agency'].map(lambda name: slugify(name, separator='_'))
 
     # Compute student-teacher ratio.
-    data['student_teacher_ratio'] = data['total_students_all_grades_includes_ae'] / data['classroom_teachers_total']
+    data['student_teacher_ratio'] = total / data['classroom_teachers_total']
 
     # Clean up some capitalization.
     data['name'] = data['name'].map(lambda s: s.title())
@@ -91,6 +93,9 @@ def postprocess(data):
 
     # Diversity
     data['diversity_score'] = compute_diversity(data)
+
+    # Percent free or reduced lunch
+    data['free_or_reduced_lunch_ratio'] = (data['num_free_lunch_eligible'] + data['num_reduced_lunch_eligible']) / total
 
     return data
 
