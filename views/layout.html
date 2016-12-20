@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{page.title}}</title>
 <link rel="stylesheet" href="/css/main.css">
-{% block styles%}{% endblock %}
+{% block styles %}{% endblock %}
 </head>
 <body>
 {% include "partials/header.html" %}
@@ -17,7 +17,7 @@
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
-{$ block scripts %}{% endblock %}
+{% block scripts %}{% endblock %}
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>
