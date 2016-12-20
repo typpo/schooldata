@@ -134,6 +134,51 @@ schoolSchema.methods.getStudentTeacherRatio = function() {
   return '?';
 };
 
+schoolSchema.methods.getGradeRange = function() {
+  var grades = [
+    this.prekindergarten_students,
+    this.kindergarten_students,
+    this.grade_1_students,
+    this.grade_2_students,
+    this.grade_3_students,
+    this.grade_4_students,
+    this.grade_5_students,
+    this.grade_6_students,
+    this.grade_7_students,
+    this.grade_8_students,
+    this.grade_9_students,
+    this.grade_10_students,
+    this.grade_11_students,
+    this.grade_12_students,
+  ];
+  var firstNonZeroIdx = -1;
+  var lastNonZeroIdx = -1;
+  for (var i=0; i < grades.length; i++) {
+    if (firstNonZeroIdx < 0 && val > 0) {
+      firstNonZeroIdx = i;
+    }
+    if (val > 0) {
+      lastNonZeroIdx = i;
+    }
+  }
+
+  var gradeMin = 'Grade ' + (firstNonZeroIdx  - 1);
+  if (firstNonZeroIdx === 0) {
+    gradeMin = 'Pre-K';
+  } else if (firstNonZeroIdx === 1) {
+    gradeMin = 'K';
+  }
+
+  var gradeMax = 'Grade ' + (lastNonZeroIdx - 1);
+  if (lastNonZeroIdx === 0) {
+    gradeMax = 'Pre-K';
+  } else if (lastNonZeroIdx === 1) {
+    gradeMax = 'K';
+  }
+
+  return gradeMin + ' to ' + gradeMax;
+};
+
 schoolSchema.methods.getUrl = function() {
   return '/schools/' + this.state + '/' + this.slug;
 };
