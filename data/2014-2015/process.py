@@ -104,8 +104,8 @@ def postprocess(data):
 
     # Slugs.
     if 'name' in data:
-        data['slug'] = data['name'].map(lambda name: slugify(name, separator='_'))
-    data['agency_slug'] = data['agency'].map(lambda name: slugify(name, separator='_'))
+        data['slug'] = data['name'].map(lambda name: slugify(name, separator='-'))
+    data['agency_slug'] = data['agency'].map(lambda name: slugify(name, separator='-'))
 
     # Compute student-teacher ratio.
     data['student_teacher_ratio'] = total / data['classroom_teachers_total']
