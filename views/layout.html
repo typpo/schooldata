@@ -5,11 +5,8 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{page.title}}</title>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" href="/css/main.css">
-<style>
 {% block styles%}{% endblock %}
-</style>
 </head>
 <body>
 {% include "partials/header.html" %}
@@ -19,8 +16,8 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <script src="/js/main.js"></script>
+{$ block scripts %}{% endblock %}
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>

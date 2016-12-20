@@ -1,9 +1,16 @@
 {% extends 'layout.html' %}
 
 {% block styles %}
-tr.indent td {
-  margin-left: 3em;
-}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+<style>
+  tr.indent td {
+    margin-left: 3em;
+  }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 {% endblock %}
 
 {% block body %}
