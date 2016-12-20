@@ -68,7 +68,7 @@ def get_desc(desc):
     return desc
 
 def get_slug(colname, abbrevs_to_desc):
-    slug = slugify(abbrevs_to_desc[colname], separator='-')
+    slug = slugify(abbrevs_to_desc[colname], separator='_')
     return SLUG_MAPPINGS.get(slug, slug)
 
 def load_annotated_dataframe(data_path, defs_path):
@@ -104,8 +104,8 @@ def postprocess(data):
 
     # Slugs.
     if 'name' in data:
-        data['slug'] = data['name'].map(lambda name: slugify(name, separator='-'))
-    data['agency_slug'] = data['agency'].map(lambda name: slugify(name, separator='-'))
+        data['slug'] = data['name'].map(lambda name: slugify(name, separator='_'))
+    data['agency_slug'] = data['agency'].map(lambda name: slugify(name, separator='_'))
 
     # Compute student-teacher ratio.
     data['student_teacher_ratio'] = total / data['classroom_teachers_total']
