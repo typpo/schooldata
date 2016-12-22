@@ -154,10 +154,10 @@ schoolSchema.methods.getGradeRange = function() {
   var firstNonZeroIdx = -1;
   var lastNonZeroIdx = -1;
   for (var i=0; i < grades.length; i++) {
-    if (firstNonZeroIdx < 0 && val > 0) {
+    if (firstNonZeroIdx < 0 && grades[i] > 0) {
       firstNonZeroIdx = i;
     }
-    if (val > 0) {
+    if (grades[i] > 0) {
       lastNonZeroIdx = i;
     }
   }
