@@ -109,6 +109,7 @@ def postprocess(data):
 
     # Compute student-teacher ratio.
     data['student_teacher_ratio'] = total / data['classroom_teachers_total']
+    data['student_teacher_ratio_pct'] = data['student_teacher_ratio'].rank(pct=True, numeric_only=True)
 
     # Clean up some capitalization.
     if 'name' in data:

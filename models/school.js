@@ -33,6 +33,7 @@ var schoolSchema = new Schema({
   classroom_teachers_total: Number,
   total_students_all_grades_includes_ae: Number,
   student_teacher_ratio: Number,
+  student_teacher_ratio_pct: Number,
   diversity_score: Number,
 
   num_free_lunch_eligible: Number,
@@ -130,6 +131,13 @@ schoolSchema.methods.getRoundedNumberOfTeachers = function() {
 schoolSchema.methods.getStudentTeacherRatio = function() {
   if (this.student_teacher_ratio) {
     return this.student_teacher_ratio.toFixed(1);
+  }
+  return '?';
+};
+
+schoolSchema.methods.getStudentTeacherRatioPct = function() {
+  if (this.student_teacher_ratio_pct) {
+    return (this.student_teacher_ratio_pct * 100).toFixed(1);
   }
   return '?';
 };
