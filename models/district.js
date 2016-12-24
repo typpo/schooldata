@@ -26,6 +26,8 @@ var districtSchema = new Schema({
   total_students_all_grades_includes_ae: Number,
   student_teacher_ratio: Number,
   student_teacher_ratio_pct: Number,
+  student_teacher_ratio_district_pct: Number,
+  student_teacher_ratio_state_pct: Number,
   diversity_score: Number,
 
   num_free_lunch_eligible: Number,
@@ -123,13 +125,6 @@ districtSchema.methods.getRoundedNumberOfTeachers = function() {
 districtSchema.methods.getStudentTeacherRatio = function() {
   if (this.student_teacher_ratio) {
     return this.student_teacher_ratio.toFixed(1);
-  }
-  return '?';
-};
-
-districtSchema.methods.getStudentTeacherRatioPct = function() {
-  if (this.student_teacher_ratio) {
-    return (this.student_teacher_ratio_pct * 100).toFixed(1);
   }
   return '?';
 };

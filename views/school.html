@@ -61,7 +61,7 @@
             <h2>Teachers</h2>
             <ul>
               <li>Number of teachers: {{school.getRoundedNumberOfTeachers()}}</li>
-              <li>Student/Teacher ratio: {{school.getStudentTeacherRatio()}} (Top {{school.getStudentTeacherRatioPct()}}%)</li>
+              <li>Student/Teacher ratio: {{school.getStudentTeacherRatio()}} (Top {{school.student_teacher_ratio_pct | round(1)}}% in the nation, top {{school.student_teacher_ratio_state_pct | round(1)}}% in state, and top {{school.student_teacher_ratio_district_pct | round(1)}}% in school district)</li>
             </ul>
           </div>
           <div>

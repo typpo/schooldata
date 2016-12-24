@@ -100,6 +100,10 @@ def compute_diversity(data):
     return reduce(lambda x,y: x + y, scores[1:], scores[0])
 
 def postprocess(data):
+    # Drop invalid data. Requires positive student and techer count.
+    data = data[data['total_students_all_grades_includes_ae'] > 0]
+    data = data[data['classroom_teachers_total'] > 0]
+
     total = data['total_students_all_grades_includes_ae']
 
     # Slugs.
@@ -109,7 +113,9 @@ def postprocess(data):
 
     # Compute student-teacher ratio.
     data['student_teacher_ratio'] = total / data['classroom_teachers_total']
-    data['student_teacher_ratio_pct'] = data['student_teacher_ratio'].rank(pct=True, numeric_only=True)
+    data['student_teacher_ratio_pct'] = data['student_teacher_ratio'].rank(pct=True) * 100
+    data['student_teacher_ratio_district_pct'] = data.groupby('agency_slug')['student_teacher_ratio'].rank(pct=True) * 100
+    data['student_teacher_ratio_state_pct'] = data.groupby('state')['student_teacher_ratio'].rank(pct=True) * 100
 
     # Clean up some capitalization.
     if 'name' in data:
@@ -153,6 +159,7 @@ print schools.shape
 
 print 'Postprocessing...'
 schools = postprocess(schools)
+print schools.shape
 
 insert_dataframe_to_mongo(schools, 'schools', 'schools')
 
@@ -165,6 +172,7 @@ districts.reset_index(inplace=True)
 print districts.shape
 print 'Postprocessing...'
 districts = postprocess(districts)
+print districts.shape
 insert_dataframe_to_mongo(districts, 'schools', 'districts')
 
 print 'Done.'
