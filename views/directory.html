@@ -23,6 +23,29 @@
     {% endfor %}
   </div>
   {% endif %}
+
+  {% if context.district %}
+    <div class="panel">
+      <div class="panel-body">
+        <h1>{{context.district.agency}}</h1>
+        <div>
+          <h3>Size</h3>
+          <ul>
+            <li>Total students: {{context.district.total_students_all_grades_includes_ae}}</li>
+            <li>Number free/reduced lunch eligible: {{context.district.num_free_lunch_eligible + context.district.num_reduced_lunch_eligible}}</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Teachers</h3>
+          <ul>
+            <li>Number of teachers: {{context.district.getRoundedNumberOfTeachers()}}</li>
+            <li>Student/Teacher ratio: {{context.district.getStudentTeacherRatio()}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
   {% include "partials/pagination.html" %}
   {% for school in schools %}
   <div class="row">

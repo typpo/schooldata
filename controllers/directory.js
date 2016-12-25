@@ -1,4 +1,5 @@
 var School = require('../models/school');
+var District = require('../models/district');
 
 function getStaticMapUrl(lat, lng) {
   return 'http://maps.googleapis.com/maps/api/staticmap?zoom=2&scale=1&size=350x250&maptype=terrain&format=png&visual_refresh=true&markers=size:mid%7Ccolor:red%7Clabel:1%7C' + lat + ',' + lng + '&key=' + process.env.MAPS_API_KEY;
@@ -27,8 +28,8 @@ function getPaginationData(currentPage, totalPage) {
  * GET school data.
  */
 exports.index = function(req, res) {
-
   var filter = {};
+  var context = {};
 
   if (req.params.directory) {
     console.log('Getting directory data for ' + req.params.directory);
@@ -46,8 +47,17 @@ exports.index = function(req, res) {
   if (req.params.district) {
     console.log('Getting directory data for ' + req.params.district);
     filter.agency_slug = req.params.district;
-  }
 
+    District.findOne({agency_slug: req.params.district}).then(function(resp) {
+      context.district = resp;
+      renderDirectory(req, res, filter, context);
+    });
+  } else {
+    renderDirectory(req, res, filter, context);
+  }
+};
+
+function renderDirectory(req, res, filter, context) {
   School.paginate(filter, {page: req.query.page || 1, limit: 20, sort: 'name'}).then(function(resp) {
     res.render('directory', {
       page: {
@@ -55,6 +65,7 @@ exports.index = function(req, res) {
       },
       pagination: getPaginationData(resp.page, resp.pages),
       schools: resp.docs,
+      context: context,
     });
   });
-};
+}
