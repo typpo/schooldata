@@ -15,10 +15,11 @@ var mongoose = require('mongoose');
 dotenv.load();
 
 // Controllers
-var HomeController = require('./controllers/home');
 var ContactController = require('./controllers/contact');
-var SchoolController = require('./controllers/school');
 var DirectoryController = require('./controllers/directory');
+var HomeController = require('./controllers/home');
+var SchoolController = require('./controllers/school');
+var SearchController = require('./controllers/search');
 
 var app = express();
 
@@ -56,6 +57,7 @@ app.get('/schools/:state/:slug', SchoolController.index);
 // Handles routes like CA-schools, 94043-shools.
 app.get('/:directory', DirectoryController.index);
 app.get('/district/:district', DirectoryController.index);
+app.get('/api/search', SearchController.index);
 
 // Production error handler
 if (app.get('env') === 'production') {
