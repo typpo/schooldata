@@ -1,6 +1,6 @@
 $(function() {
   $('.visibility-toggle').on('click', function() {
-    $($this.data('for')).toggle();
+    $($(this).data('for')).toggle();
     return false;
   });
 
