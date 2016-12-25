@@ -114,8 +114,10 @@ def postprocess(data):
     # Compute student-teacher ratio.
     data['student_teacher_ratio'] = total / data['classroom_teachers_total']
     data['student_teacher_ratio_pct'] = data['student_teacher_ratio'].rank(pct=True) * 100
-    data['student_teacher_ratio_district_pct'] = data.groupby('agency_slug')['student_teacher_ratio'].rank(pct=True) * 100
-    data['student_teacher_ratio_state_pct'] = data.groupby('state')['student_teacher_ratio'].rank(pct=True) * 100
+    data['student_teacher_ratio_district_pct'] = \
+            data.groupby('agency_slug')['student_teacher_ratio'].rank(pct=True) * 100
+    data['student_teacher_ratio_state_pct'] = \
+            data.groupby('state')['student_teacher_ratio'].rank(pct=True) * 100
 
     # Clean up some capitalization.
     if 'name' in data:
