@@ -42,6 +42,68 @@
             <li>Student/Teacher ratio: {{context.district.getStudentTeacherRatio()}}</li>
           </ul>
         </div>
+        <div>
+          <h3>Demographic Information</h3>
+          <ul>
+            <li>Number of male students: {{context.district.getNumberMale()}}</li>
+            <li>Number of female students: {{context.district.getNumberFemale()}}</li>
+          </ul>
+          <a class="visibility-toggle" data-for=".race-table" href="#">Show race/ethnicity breakdown</a>
+          <div class="race-table" style="display:none;">
+            <table class="table table-striped table-hover table-condensed jquery-datatable">
+              <thead>
+                <tr>
+                  <th>Race</th>
+                  <th>Number of students</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if context.district.all_students_american_indian_alaska_native >= 0 %}
+                  <tr>
+                    <td>American Indian/Alaska native</td>
+                    <td>{{context.district.all_students_american_indian_alaska_native}}</td>
+                  </tr>
+                {% endif %}
+                {% if context.district.all_students_asian >= 0 %}
+                  <tr>
+                    <td>Asian</td>
+                    <td>{{context.district.all_students_asian}}</td>
+                  </tr>
+                {% endif %}
+                {% if context.district.all_students_black >= 0 %}
+                  <tr>
+                    <td>Black</td>
+                    <td>{{context.district.all_students_black}}</td>
+                  </tr>
+                {% endif %}
+                {% if context.district.all_students_hawaiian_native_pacific_islander >= 0 %}
+                  <tr>
+                    <td>Hawaiian native pacific islander</td>
+                    <td>{{context.district.all_students_hawaiian_native_pacific_islander}}</td>
+                  </tr>
+                {% endif %}
+                {% if context.district.all_students_hispanic >= 0 %}
+                  <tr>
+                    <td>Hispanic</td>
+                    <td>{{context.district.all_students_hispanic}}</td>
+                  </tr>
+                {% endif %}
+                {% if context.district.all_students_two_or_more_races >= 0 %}
+                  <tr>
+                    <td>Two or more races</td>
+                    <td>{{context.district.all_students_two_or_more_races}}</td>
+                  </tr>
+                {% endif %}
+                {% if context.district.all_students_white >= 0 %}
+                  <tr>
+                    <td>White</td>
+                    <td>{{context.district.all_students_white}}</td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   {% endif %}
