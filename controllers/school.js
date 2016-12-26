@@ -2,7 +2,7 @@ var School = require('../models/school');
 
 function getStaticMapUrl(address) {
   address = address.replace(/ /g, '+');
-  return 'https://www.google.com/maps/embed/v1/place?q=' + address + '&key=' + process.env.MAPS_API_KEY;
+  return 'https://www.google.com/maps/embed/v1/place?zoom=17&q=' + address + '&key=' + process.env.MAPS_API_KEY;
 }
 
 function getStreetViewUrl(address) {
