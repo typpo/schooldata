@@ -1,0 +1,27 @@
+<div class="col-sm-10 col-sm-offset-1">
+  <div class="panel ranking-list">
+    <div class="panel-body">
+      <div class="col-sm-12">
+        <h3><span class="glyphicon glyphicon-education"></span> {{panel_header}}</h3>
+        <div class="panel-description-container">
+          <p>{{panel_desc}}</p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h4>Schools</h4>
+        {% for item in rankings.school[panel_ranking] %}
+          {% include "partials/homepage_school.html" %}
+        {% endfor %}
+      </div>
+      <div class="col-sm-6">
+        <h4>Districts</h4>
+        {% for item in rankings.district[panel_ranking] %}
+          {% include "partials/homepage_school.html" %}
+        {% endfor %}
+      </div>
+      <div class="col-sm-12 search-cta-container">
+        <button class="btn btn-default">&raquo; {{panel_cta}}</button>
+      </div>
+    </div>
+  </div>
+</div>

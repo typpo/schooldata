@@ -24,144 +24,44 @@
   </div>
   {% endif %}
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-10 col-sm-offset-1">
       <div class="panel">
         <div class="panel-body">
           <h2>Unbiased School Statistics</h2>
-          <p>SchoolScout.org is a non-profit that publishes data from the U.S. Department of Education in a simple, easy-to-understand format.  Unlike other school-ranking sites, we are not ad-supported and provide raw data rather than biased interpretations.</p>
-          <a href="#" role="button" class="btn btn-default">View details</a>
+          <p>SchoolScout.org is a non-profit that publishes data from the U.S. Department of Education in a simple, easy-to-understand format.  Unlike other school-ranking sites, we don't run ads on our site or sell user information.  We provide only raw data released by state and federal governments rather than biased interpretations.</p>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
-      <div class="panel ranking-list">
-        <div class="panel-body">
-          <div class="col-md-12">
-            <h2>Best Student-Teacher Ratio</h2>
-            <p>Student-Teacher ratio is an indicator of how personalized your child's education will be.  Schools with a lower ratio tend to give more individual attention to students.</p>
-          </div>
-          <div class="col-md-4">
-            <h4>Schools</h4>
-            {% for item in rankings.school.student_teacher_ratio %}
-              {% include "partials/homepage_school.html" %}
-            {% endfor %}
-          </div>
-          <div class="col-md-4">
-            <h4>Districts</h4>
-            {% for item in rankings.district.student_teacher_ratio %}
-              {% include "partials/homepage_school.html" %}
-            {% endfor %}
-          </div>
-          <div class="col-md-4">
-            <img src="http://img-aws.ehowcdn.com/300x200/photos.demandstudios.com/getty/article/56/9/78404083_XS.jpg">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="panel ranking-list">
-        <div class="panel-body">
-          <h3>Most Diverse Schools</h3>
-          <p>A school with a diverse student body can help prepare your child for the real world and provide a broader range of perspectives and experiences. The U.S. is a diverse nation and its public schools are diverse as well.</p>
-          <br>
-          <div class="col-sm-7">
-            {% for item in rankings.school.diversity  %}
-              {% include "partials/homepage_school.html" %}
-            {% endfor %}
-          </div>
-          <div class="col-sm-5">
-            <img src="http://www.theprospect.net/wp-content/uploads/2013/12/DiverseStudents.jpg">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="panel ranking-list">
-        <div class="panel-body">
-          <h3>Most Diverse Districts</h3>
-          <p>Attending a school with a diverse student body can help prepare your child for citizenship in a multicultural democracy. As the United States becomes a more culturally and ethnically diverse nation, public schools are becoming more diverse, too.</p>
-          <br>
-          <div class="col-sm-7">
-            {% for item in rankings.district.diversity  %}
-              {% include "partials/homepage_school.html" %}
-            {% endfor %}
-          </div>
-          <div class="col-sm-5">
-            <img src="http://www.theprospect.net/wp-content/uploads/2013/12/DiverseStudents.jpg">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="panel ranking-list">
-        <div class="panel-body">
-          <h3>Largest Schools</h3>
-          <p>These schools are faced with an enormous responsibility - the education of a large number of children.</p>
-          <br>
-          <div class="col-sm-7">
-            {% for item in rankings.school.size %}
-              {% include "partials/homepage_school.html" %}
-            {% endfor %}
-          </div>
-          <div class="col-sm-5">
-            <img src="https://i.imgur.com/ffxPX5M.jpg">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="panel ranking-list">
-        <div class="panel-body">
-          <h3>Largest Districts</h3>
-          <p>Meow meow</p>
-          <br>
-          <div class="col-sm-7">
-            {% for item in rankings.district.size %}
-              {% include "partials/homepage_school.html" %}
-            {% endfor %}
-          </div>
-          <div class="col-sm-5">
-            <img src="https://i.imgur.com/ffxPX5M.jpg">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="panel ranking-list">
-        <div class="panel-body">
-          <h3>Schools with Most Students on Free/Reduced Lunch</h3>
-          <p>Meow meow</p>
-          <br>
-          <div class="col-sm-7">
-            {% for item in rankings.school.lunch %}
-              {% include "partials/homepage_school.html" %}
-            {% endfor %}
-          </div>
-          <div class="col-sm-5">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/School_lunch.jpg">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="panel ranking-list">
-        <div class="panel-body">
-          <h3>Districts with Most Students on Free/Reduced Lunch</h3>
-          <p>Meow meow</p>
-          <br>
-          <div class="col-sm-7">
-            {% for item in rankings.district.lunch %}
-              {% include "partials/homepage_school.html" %}
-            {% endfor %}
-          </div>
-          <div class="col-sm-5">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/School_lunch.jpg">
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- S/T Ratio -->
+    {% set panel_header="Best Student-Teacher Ratio" %}
+    {% set panel_desc="Student-Teacher ratio is an indicator of how personalized your child's education will be.  Schools with a lower ratio tend to give more individual attention to students." %}
+    {% set panel_ranking="student_teacher_ratio" %}
+    {% set panel_cta="See student-teacher ratio at other schools" %}
+    {% include "partials/homepage_panel.html" %}
+
+    <!-- Diversity -->
+    {% set panel_header="Most Diverse Schools" %}
+    {% set panel_desc="A school with a diverse student body can help prepare your child for the real world and provide a broader range of perspectives and experiences. The U.S. is a diverse nation and its public schools are diverse as well." %}
+    {% set panel_ranking="diversity" %}
+    {% set panel_cta="See diversity at other schools" %}
+    {% include "partials/homepage_panel.html" %}
+
+    <!-- Size -->
+    {% set panel_header="Most Students" %}
+    {% set panel_desc="These schools are faced with an enormous responsibility - the education of a large number of children." %}
+    {% set panel_ranking="size" %}
+    {% set panel_cta="See class sizes at other schools" %}
+    {% include "partials/homepage_panel.html" %}
+
+
+    <!-- Reduced/Free Lunch -->
+    {% set panel_header="Most Students Receiving Reduced/Free Lunch" %}
+    {% set panel_desc="The federal government subsidizes lunch for schools in poor communities." %}
+    {% set panel_ranking="lunch" %}
+    {% set panel_cta="See lunch programs at other schools" %}
+    {% include "partials/homepage_panel.html" %}
   </div>
 </div>
 {% endblock %}
