@@ -38,9 +38,11 @@ exports.index = function(req, res) {
     if (/^\d+$/.test(loc)) {
       // By zipcode.
       filter.zip = loc;
+      context.thing = loc;
     } else {
       // By state.
       filter.state = loc.toUpperCase();
+      context.thing = filter.state;
     }
   }
 
@@ -50,6 +52,7 @@ exports.index = function(req, res) {
 
     District.findOne({agency_slug: req.params.district}).then(function(resp) {
       context.district = resp;
+      context.thing = context.district.agency;
       renderDirectory(req, res, filter, context);
     });
   } else {
