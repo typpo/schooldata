@@ -4,9 +4,11 @@ $(function() {
     return false;
   });
 
-  $('.jquery-datatable').DataTable({
-    paging: false,
-    order: [[1, 'desc']],
-    bFilter: false
-  });
+  if ($.fn.DataTable) {
+    $('.jquery-datatable').DataTable({
+      paging: false,
+      order: [[1, 'desc']],
+      bFilter: false
+    });
+  }
 });
