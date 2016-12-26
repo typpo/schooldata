@@ -43,28 +43,32 @@
           <div class="row">
             <div class="col-sm-7">
               <h3>{{school.name}}</h3>
-              <p>
-                {% if school.getStreetAddress() %}
-                  {{school.getStreetAddress()}},
-                {% endif %}
-                {{school.city}}, {{school.state}} <a href="/{{school.zip}}-schools">{{school.zip}}</a>
-              </p>
-              <p>Phone: <a href="tel:{{school.phone}}">{{school.phone | phone_number}}</a></p>
-              <p>District: <a href="/district/{{school.agency_slug}}">{{school.agency}}</a></p>
-              <p>Type: {{school.type}}</p>
-              <p>Grade range: {{school.getGradeRange()}}</p>
-              <p>NCES ID: {{school.nces_agency_identification_number}}{{school.nces_school_identifier}}</p>
+              <div>
+                <p>
+                  {% if school.getStreetAddress() %}
+                    {{school.getStreetAddress()}},
+                  {% endif %}
+                  {{school.city}}, {{school.state}} <a href="/{{school.zip}}-schools">{{school.zip}}</a>
+                </p>
+                <p>Phone: <a href="tel:{{school.phone}}">{{school.phone | phone_number}}</a></p>
+                <p>District: <a href="/district/{{school.agency_slug}}">{{school.agency}}</a></p>
+                <p>Type: {{school.type}}</p>
+                <p>Grade range: {{school.getGradeRange()}}</p>
+                <p>NCES ID: {{school.nces_agency_identification_number}}{{school.nces_school_identifier}}</p>
+              </div>
               <div>
                 <h2>Size</h2>
-                Total students: {{school.total_students_all_grades_includes_ae}}
-                <br>
-                Number free/reduced lunch eligible: {{school.num_free_lunch_eligible + school.num_reduced_lunch_eligible}}
+                <p>Total students: {{school.total_students_all_grades_includes_ae}}</p>
+                <p>Number free/reduced lunch eligible: {{school.num_free_lunch_eligible + school.num_reduced_lunch_eligible}}</p>
               </div>
               <div>
                 <h2>Teachers</h2>
                 <ul>
                   <li>Number of teachers: {{school.getRoundedNumberOfTeachers()}}</li>
-                  <li>Student/Teacher ratio: {{school.getStudentTeacherRatio()}} (Top {{school.student_teacher_ratio_pct | round(1)}}% in the nation, top {{school.student_teacher_ratio_state_pct | round(1)}}% in state, and top {{school.student_teacher_ratio_district_pct | round(1)}}% in school district)</li>
+                  <li>
+                    Student/Teacher ratio: {{school.getStudentTeacherRatio()}}<br>
+                    (Top {{school.student_teacher_ratio_pct | round(1)}}% in the nation, top {{school.student_teacher_ratio_state_pct | round(1)}}% in state, and top {{school.student_teacher_ratio_district_pct | round(1)}}% in school district)
+                  </li>
                 </ul>
               </div>
             </div>
