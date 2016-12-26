@@ -11,4 +11,12 @@ $(function() {
       bFilter: false
     });
   }
+
+  $('.search-cta-container').on('click', function() {
+    var zip = prompt('Please enter your zipcode', '94043');
+
+    if (zip!= null) {
+      window.location.href = '/' + zip + '-schools';
+    }
+  });
 });
