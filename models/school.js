@@ -102,6 +102,14 @@ schoolSchema.methods.getStreetAddress = function() {
   return str;
 };
 
+schoolSchema.methods.getAddress = function() {
+  var address = '';
+  if (this.getStreetAddress()) {
+    address += this.getStreetAddress() + ', '
+  }
+  return address + this.city + ', ' + this.state + ' ' + this.zip;
+}
+
 schoolSchema.methods.getNumberMale = function() {
   return (
     this.all_students_american_indian_alaska_native_male +

@@ -1,13 +1,12 @@
 var School = require('../models/school');
 
-function getStaticMapUrl(streetAddress, city, state, zipcode) {
-  var address = streetAddress + '+' + city + '+' + state + '+' + zipcode;
+function getStaticMapUrl(address) {
   address = address.replace(/ /g, '+');
   return 'https://www.google.com/maps/embed/v1/place?q=' + address + '&key=' + process.env.MAPS_API_KEY;
 }
 
-function getStreetViewUrl(lat, lng) {
-  return 'https://maps.googleapis.com/maps/api/streetview?size=400x400&location=' + lat + ',' + lng + '&fov=90&key=' + process.env.MAPS_API_KEY;
+function getStreetViewUrl(address) {
+  return 'https://www.google.com/maps/embed/v1/streetview?location=' + address + '&fov=90&key=' + process.env.MAPS_API_KEY;
 }
 
 /**
@@ -22,10 +21,10 @@ exports.index = function(req, res) {
       },
       school: school,
       map: {
-        url: getStaticMapUrl(school.getStreetAddress(), school.city, school.state, school.zip),
+        url: getStaticMapUrl(school.getAddress()),
       },
       streetview: {
-        url: getStreetViewUrl(school.lat, school.lng),
+        url: getStreetViewUrl(school.getAddress()),
       },
     });
   });

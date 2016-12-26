@@ -41,12 +41,7 @@
       <div class="panel">
         <div class="panel-body">
           <h3>{{school.name}}</h3>
-          <p>
-            {% if school.getStreetAddress() %}
-              {{school.getStreetAddress()}},
-            {% endif %}
-            {{school.city}}, {{school.state}} {{school.zip}}
-          </p>
+          <p>{{school.getAddress()}}</p>
           <p><a href="tel:{{school.phone}}">{{school.phone | phone_number}}</a></p>
           <p>District: <a href="/district/{{school.agency_slug}}">{{school.agency}}</a></p>
           <p>{{school.getGradeRange()}}</p>
@@ -320,9 +315,11 @@
           <div>
             <iframe width="600" height="450" frameborder="0" style="border:0" src="{{map.url}}" allowfullscreen></iframe>
           </div>
+          <!--
           <div>
-            <img src="{{streetview.url}}" />
+            <iframe width="600" height="450" frameborder="0" style="border:0" src="{{streetview.url}}" allowfullscreen></iframe>
           </div>
+          -->
         </div>
       </div>
     </div>
