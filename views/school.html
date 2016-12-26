@@ -42,10 +42,10 @@
         <div class="panel-body">
           <h3>{{school.name}}</h3>
           <p>{{school.getAddress()}}</p>
-          <p><a href="tel:{{school.phone}}">{{school.phone | phone_number}}</a></p>
+          <p>Phone: <a href="tel:{{school.phone}}">{{school.phone | phone_number}}</a></p>
           <p>District: <a href="/district/{{school.agency_slug}}">{{school.agency}}</a></p>
-          <p>{{school.getGradeRange()}}</p>
           <p>Type: {{school.type}}</p>
+          <p>Grade Range: {{school.getGradeRange()}}</p>
           <p>NCES ID: {{school.nces_agency_identification_number}}{{school.nces_school_identifier}}</p>
           <div>
             <h2>Size</h2>

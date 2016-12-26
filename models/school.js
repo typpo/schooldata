@@ -173,14 +173,14 @@ schoolSchema.methods.getGradeRange = function() {
     }
   }
 
-  var gradeMin = 'Grade ' + (firstNonZeroIdx  - 1);
+  var gradeMin = firstNonZeroIdx  - 1;
   if (firstNonZeroIdx === 0) {
     gradeMin = 'Pre-K';
   } else if (firstNonZeroIdx === 1) {
     gradeMin = 'K';
   }
 
-  var gradeMax = 'Grade ' + (lastNonZeroIdx - 1);
+  var gradeMax = lastNonZeroIdx - 1;
   if (lastNonZeroIdx === 0) {
     gradeMax = 'Pre-K';
   } else if (lastNonZeroIdx === 1) {
