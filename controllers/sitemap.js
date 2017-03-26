@@ -16,7 +16,7 @@ function querySchools() {
       sitemapUrls.push({
         url: '/schools/' + result.state + '/' + result.slug,
         changefreq: 'weekly',
-        priority: 0.5,
+        priority: 0.1,
       });
     });
 
