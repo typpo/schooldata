@@ -20,6 +20,7 @@ var DirectoryController = require('./controllers/directory');
 var HomeController = require('./controllers/home');
 var SchoolController = require('./controllers/school');
 var SearchController = require('./controllers/search');
+var SitemapController = require('./controllers/sitemap');
 
 var app = express();
 
@@ -51,6 +52,7 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', HomeController.index);
+app.get('/sitemap.xml', SitemapController.index);
 app.get('/contact', ContactController.contactGet);
 app.post('/contact', ContactController.contactPost);
 app.get('/schools/:state/:slug', SchoolController.index);
