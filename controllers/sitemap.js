@@ -1,31 +1,44 @@
 var sm = require('sitemap');
 var School = require('../models/school');
 
-var sitemap_urls = [];
+var sitemapUrls = [];
+var sitemap = null;
 
-function addSchool() {
-  School.find({}).then(function(resp) {
-    resp.forEach(function(result) {
-      sitemap_urls.push({
+function querySchools() {
+  console.log('Querying schools for sitemap...');
+  School.find({}, {
+    state: 1,
+    slug: 1,
+  }, {
+    limit: 10000,
+  }, function(err, results) {
+    results.forEach(function(result) {
+      sitemapUrls.push({
         url: '/schools/' + result.state + '/' + result.slug,
         changefreq: 'weekly',
         priority: 0.5,
       });
     });
+
+    sitemap = sm.createSitemap({
+      hostname: 'http://www.schoolscout.org/',
+      cacheTime: 600000,        // 600 sec - cache purge period
+      urls: sitemapUrls,
+    });
+
+    console.log('Sitemap initialized');
   });
 }
 
-function onStartup() {
-  addSchool();
-}
-
-var sitemap = sm.createSitemap({
-  hostname: 'http://www.schoolscout.org/',
-  cacheTime: 600000,        // 600 sec - cache purge period
-  urls: sitemap_urls,
-});
+querySchools();
 
 exports.index = function(req, res) {
+  if (!sitemap) {
+    res.status(500);
+    res.send('sitemap not initialized');
+    return;
+  }
+
   sitemap.toXML(function(err, xml) {
      if (err) {
        console.error('Sitemap error:', err);
