@@ -1,7 +1,7 @@
 appnope==0.1.0
 backports-abc==0.5
 backports.shutil-get-terminal-size==1.0.0
-certifi==2016.9.26
+certifi==2022.12.7
 configparser==3.5.0
 decorator==4.0.10
 entrypoints==0.2.2
